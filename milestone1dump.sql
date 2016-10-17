@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Oct 15, 2016 at 12:02 AM
+-- Generation Time: Oct 17, 2016 at 04:56 PM
 -- Server version: 5.5.49-log
 -- PHP Version: 7.0.9
 
@@ -35,8 +35,20 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `uid` int(11) NOT NULL,
   `Answer` longtext CHARACTER SET utf8 NOT NULL,
   `vote_count` int(11) NOT NULL,
-  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Correct_Answer` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `answer`
+--
+
+INSERT INTO `answer` (`aid`, `qid`, `uid`, `Answer`, `vote_count`, `creation_date`, `Correct_Answer`) VALUES
+(1, 1, 2, 'by using split("\\.")', 0, '2016-10-17 16:53:20', 0),
+(2, 2, 2, 'iphone', 0, '2016-10-17 16:53:08', 1),
+(9, 4, 1, 'hello', 0, '2016-10-17 14:36:52', 1),
+(10, 2, 1, 'asdfgh', 0, '2016-10-17 16:53:20', 1),
+(11, 2, 1, 'asdf', 0, '2017-10-16 20:43:37', 0);
 
 -- --------------------------------------------------------
 
@@ -51,10 +63,18 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `Title` varchar(800) CHARACTER SET utf8 NOT NULL,
   `Description` longtext CHARACTER SET utf8 NOT NULL,
   `Vote_Count` int(11) NOT NULL,
-  `Correct_aid` int(11) NOT NULL,
   `Answer_Count` int(11) NOT NULL,
   `Date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`qid`, `uid`, `Title`, `Description`, `Vote_Count`, `Answer_Count`, `Date_created`) VALUES
+(1, 1, 'how to use split ?', 'how to use split with "."', 0, 0, '2016-10-17 14:36:52'),
+(2, 2, 'which phone is better iphone or samsung?', 'I need to gift a phone to my friend who is into photography which phone is better for this requirement?', 0, 3, '2016-10-17 16:43:37'),
+(4, 1, 'what is the specification of iphone camera?', 'what is the shutter speed in front camera of an iphone?', 0, 1, '2016-10-17 14:36:24');
 
 -- --------------------------------------------------------
 
@@ -116,12 +136,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `qid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `qid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --
