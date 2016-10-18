@@ -69,7 +69,7 @@ $row=mysqli_fetch_array($results); ?>
 		</div>
     
     	<?php
-			while($rows=mysqli_fetch_array($results)){
+			while($rows=mysqli_fetch_array($result)){
 				$question = $rows['qid']; ?>
                 <div class="rows">
                     <div class = "cell" ><a href="view.php?id=<?php echo $rows['qid']; ?> "><?php echo $rows['Title']; ?></a><BR>
