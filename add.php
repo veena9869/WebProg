@@ -40,12 +40,8 @@ $id = "SELECT qid FROM `$tbl_name` WHERE `Title` = '".$topic."'";
 $resi =$db->query($id);
 $rowi = mysqli_fetch_array($resi);
 $ques = $rowi['qid'];
-if($result){
 header("location:index.php");
-}
-else
-{
-    echo "error";
-}
+
+
 ?>
 
