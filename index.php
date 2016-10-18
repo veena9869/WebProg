@@ -52,7 +52,7 @@ $row=mysqli_fetch_array($results); ?>
 	</div>
 <div class = "user"><strong>Welcome, </strong> 
     <?php echo $uname; ?>
-	[<a href="index.php?action=logout">log out</a>]</td>
+	[<a href="index.php?action=logout">log out</a>]
 </div>		
         <nav class="post-quest">
 				<a href="Create_Topic.php"><strong>Ask a Question</strong> </a>
@@ -70,16 +70,15 @@ $row=mysqli_fetch_array($results); ?>
 			while($rows=mysqli_fetch_array($result)){
 				$question = $rows['qid']; ?>
                 <div class="rows">
-                    <div class = "cell" ><a href="view.php?id=<?php echo $rows['qid']; ?> "><?php echo $rows['Title']; ?></a><BR>
+                    <div class = "cell" ><a href="view.php?id=<?php echo $rows['qid']; ?> "><?php echo $rows['Title']; ?></a><br>
 					<?php $quest = $rows['qid'];
 					$tag_num = array();	?>
-                </div>
+                       </div>
 			<div class = "cell" ><?php echo $rows['Answer_Count']; ?></div>
 			<div class = "cell" ><?php echo $rows['Vote_Count']; ?></div>
 			<div class = "cell" ><?php echo $rows['Date_created']; ?></div>
 			</div>
 			<?php }	?>
-</div>
 
 </body>
 
