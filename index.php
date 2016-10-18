@@ -24,7 +24,7 @@ $db = new mysqli($host, $user,$pw,$db_name);// or die (mysql_error());
 
 $sql="SELECT * FROM  `$tbl_name` ORDER BY Answer_Count DESC,Date_created DESC ";
 
-$sql1="SELECT id FROM `$tbl_name2` WHERE `username` =  '".$uname. "'";
+$sql1="SELECT uid FROM `$tbl_name2` WHERE `username` =  '".$uname. "'";
 
 $result=$db->query($sql);
 
