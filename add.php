@@ -40,6 +40,7 @@ $result=$db->query($sql);
 
 $id = "SELECT qid FROM `$tbl_name` WHERE `Title` = '".$topic."'";
 $resi =$db->query($id);
+echo $sql;
 $rowi = mysqli_fetch_array($resi);
 $ques = $rowi['qid'];
 header("location:index.php");
