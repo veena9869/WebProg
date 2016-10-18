@@ -18,7 +18,7 @@ $topic = addslashes($topic);
 $detail=$_POST['detail'];
 $detail = addslashes($detail);
 
-$datetime=date("d/m/y h:i:s");
+$datetime=date("y/m/d h:i:s");
 
 $username = $_SESSION['username'];
 
