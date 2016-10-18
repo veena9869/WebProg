@@ -31,7 +31,7 @@ $uname = $_SESSION['username'];
 	$uname = $_SESSION['username'];
 
 	$sql1="SELECT uid FROM `$tbl_name2` WHERE `username` =  '".$uname. "'";
-    $result=$db->query($sql);
+   // $result=$db->query($sql);
 
 	$results=$db->query($sql1);
 
