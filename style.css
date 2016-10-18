@@ -4,6 +4,7 @@
 	margin: 1px 0;
 
 }
+
 .vote, .vote-score{
 	clear: both;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -15,103 +16,83 @@
 
 }
 .vote-score{cursor: text;}
+
 body{
-	background-color: #ecf0f1; 
+	background-color: white;
     
 	
 }
+
 h1{
-	color: black;
+
+	
+	color: #333;
+
+  	
 }
+
 h2{
 	color: gold;
-}
-h3
-{
-    font-size: 28px;
 }
 .user{
 	font-weight: bold;
 	font-family: Arial;
-    background-color:#cb9355;
+	
+	background-color: palegoldenrod;
 	font-variant: small-caps;
-    font-size: 20px;
-    color: black;
-    height: 40px;
-    padding: 20px 20px 0px 0px;
-    padding-left: 20px;
-    
+
+	
 }
 .user a:hover{
 	color: black;
 	font-weight: normal;
 	
 }
-.post-quest
-{
-    margin: 20px 20px 20px 0px;
-    font-size: 22px;
-    display: block;
-    background-color: #b2b1b1;
-     padding: 15px 10px ;
-    width: 15%;;
-    height: 20%;
-    margin-left: 550px;
-    align-content: center;
-}
+
 .table{
 	display: table;
 	border-collapse: collapse;
-	width: 850px;
-	height: 200px;
-	background-color: #778899;
+	width: 100%;
+	height: 100%;
+	background-color: palegoldenrod;
 	border: 1px solid black;
 	border-spacing: 0;
 	border-radius: 5px;
-	margin:20px; 
-	padding: 30px;
+	margin:0px; 
+	padding: 0px;
 	box-shadow: 10px 10px 5px #888888;
-    color: black;
+
+
 }
-.table1{
-   display: table;
-	border-collapse: collapse;
-	width: 850px;
-	height: 200px;
-	background-color: #778899;
-	border: 1px solid black;
-	border-spacing: 0;
-	border-radius: 5px;
-	margin:20px; 
-	padding: 30px;
-	box-shadow: 10px 10px 5px #888888;
-    color: white; 
-}
+
 .create{
+
 color: black;
 font-weight: bold;
+
 }
 .create a:hover{
 	color: black;
-	font-size:110%;	
+	font-size:110%;
+	
+	
 }
+
+
 .heading{
 display: table-row;
-background-color: #b2b1b1;
+background-color: #4C0000;
 width: auto;
 font-weight: bold;
 text-align: center;
 color: white;
+
 }
-.rows:nth-child(odd){
+.rows{
 	display: table-row;
-    background-color: #fcd2a0; 
+
 }
-.rows:nth-child(even)
-{
-    display: table-row;
-    background-color: #f8e9d8;
-}
+
 .cell{
 display: table-cell;
 border: none;
@@ -120,12 +101,9 @@ width: 150px;
 height: 0px;
 padding-left: 0px;
 padding-right: 0px;
-    padding-top: 10px;
 text-align: center;
-        width: 700px;
-    height: 30px;
-    color: black;
-    
+
+
 }
 .cell1{
 display: table-cell;
@@ -136,6 +114,8 @@ height: 0px;
 padding-left: 0px;
 padding-right: 0px;
 text-align: center;
+
+
 }
 .cell2{
 display: table-cell;
@@ -146,6 +126,8 @@ height: 0px;
 padding-left: 0px;
 padding-right: 0px;
 text-align: center;
+
+
 }
 .cell3{
 display: table-cell;
@@ -156,44 +138,50 @@ height: 0px;
 padding-left: 0px;
 padding-right: 0px;
 text-align: center;
+
+
 }
-a
-{
-color: black;
-}
+
+
 .login{
 	display: table;
 	border-collapse: collapse;
-	width: 30%;
-	height: 30%;
-    background-color: #0aa6a8;
+	width: 50%;
+	height: 50%;
+	background-color: palegoldenrod;
 	border: 1px solid green;
 	border-spacing: 5px;
 	border-radius: 5px;
-	margin:auto; 
+	margin:50px; 
 	padding: 50px;
 	box-shadow: 10px 10px 5px #888888;
 	font-weight: bold;
 	display: flex;
-    text-align: center;
+
 }
+
+
 .olduser{
 display: table;
-width: 300px;
-height: 300px;
-background-color: #0ac2c4;
-text-align: center;
+width: 200px;
+
+
+
 }
+
 .newuser{
 display: table;
 width: 100px;
-    background-color: #0aa6a8;
-    text-align: center;
+
 }
+
 .git{
 	display: table;
-width: 400px;	
+width: 400px;
+	
 }
+
+
 .viewcell{
 display: table-cell;
 border: solid;
@@ -201,12 +189,15 @@ border-width: thin;
 width: 1500px;
 padding-left: 5px;
 padding-right: 5px;
-text-align: left;
-    background-color: #cb9355;
+text-align: center;
+
 }
 .like{
 	color: green;
+	
+
 }
+
 .likecell{
 display: table-cell;
 border: none;
@@ -215,23 +206,29 @@ border-width: thin;
 padding-left: 550px;
 padding-right: 0px;
 text-align: center;
+
+
+
 }
 .admin{
 	color:red;
 	font-weight: bold;
 }
+
 .tableanswer{
 	display: table;
 	border-collapse: collapse;
 	width: 100%;
 	height: auto;
-	background-color: #cb9355;
+	background-color: palegoldenrod;
 	border: 1px solid black;
 	border-spacing: 0;
 	border-radius: 5px;
 	margin:0px; 
 	padding: 0px;
 	box-shadow: 10px 10px 5px #888888;
+
+
 }
 .vcell{
 display: table-cell;
@@ -241,8 +238,9 @@ width: 1500px;
 height: 0px;
 padding-left: 0px;
 padding-right: 0px;
-text-align: left;
-    background-color: #cb9355;
+text-align: center;
+
+
 }
 .tagcell{
 display: table-cell;
@@ -256,9 +254,7 @@ text-align: center;
 background-color: palegoldenrod;
 font-family: Lucida Sans Unicode; 
 font-size: 75%;
-}
-.liked-class{
-    color: #1a08aa;
+	
 }
 
 .tagcell a:link{
@@ -266,30 +262,31 @@ font-size: 75%;
 }
 
 .tagcell a:hover{
+	
 	font-Weight: Bold;
 }
 
 .cell a:hover{
 	font-weight: bold;
-	background-color: #a7845b;
+	background-color: white;
 }
+
 #content{
 	background-color: white;
 	width: 150px;
+	
 }
-.search{	
+.search{
+	
+
+	
 }
 
 #content a:hover{
 	color: green;
 	font-weight: bold;
 }
-.back-page
-{
-    height: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
+
 .usercell{
 display: table-cell;
 border: none;
@@ -300,16 +297,23 @@ padding-left: 0px;
 padding-right: 0px;
 text-align: center;
 font-weight: bold;
+
+
+
 }
 .userrows{
 	display: table-row;
+	
+
 }
 
 .userrows a:hover{
+	
 	background-color: white;
 	font-size: 110%;
 }
 .userrows a:link{
+
 }
 
 

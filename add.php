@@ -1,14 +1,10 @@
 <?php
 session_start();
-
-
 include_once "Db_configure.php";
-
 $tbl_name="questions";
 $tbl_name2="users";
 $tbl_name5="tags";
 $tbl_name6="questag";
-
 
 $db = new mysqli($host, $user,$pw,$db_name);// or die (mysql_error());
 
@@ -36,9 +32,13 @@ $sql="INSERT INTO `$tbl_name` (`uid`,`Title`,`Description`, `Date_created`)VALUE
 $result=$db->query($sql);
 
 $id = "SELECT qid FROM `$tbl_name` WHERE `Title` = '".$topic."'";
+
 $resi =$db->query($id);
 $rowi = mysqli_fetch_array($resi);
+
 $ques = $rowi['qid'];
+
+
 header("location:index.php");
 ?>
 

@@ -21,13 +21,17 @@ if(!$result){
 $count = $db->affected_rows;
 
 if($count == 1){ 
+
 	 session_start();
 
 	$_SESSION['username'] = $username;
 	$sql1="SELECT id FROM users WHERE `username` = '".$username. "'";
+
+	//echo $sql1;
 	$result2=$db->query($sql1);
 	$row=mysqli_fetch_array($result2);
 	$id = $row['id'];
+	//echo $id;
 	$_SESSION['id'] = $id;
 	$_SESSION['loggedIn'] = True;
 
