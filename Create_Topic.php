@@ -46,15 +46,15 @@ $uname = $_SESSION['username'];
 </div>	
 <div class="table1">
 	<form id="form1" name="form1" method="post" action="add.php">
-					<strong>Title</strog>:
+					<strong>Title</strong>:
 					<input name="topic" type="text" id="topic" size="100"/>
-                    </br>
+                    <br>
 				    <strong>Description</strong>:
 					<textarea name="detail" cols="120" rows="10" id="detail"></textarea>
-                    </br></br>
+                    <br><br>
 				
     <input type="submit" name="Submit" value="Submit" /> <input type="reset" name="Submit2" value="Reset" />
-</div>
+
 </form>
 </div>
 
