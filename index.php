@@ -22,7 +22,7 @@ if (!$_SESSION['loggedIn']){
 $uname = $_SESSION['username'];
 $db = new mysqli($host, $user,$pw,$db_name);// or die (mysql_error());
 
-$sql="SELECT * FROM  `$tbl_name` ORDER BY Answer_Count DESC,Date_created DESC LIMIT 5";
+$sql="SELECT * FROM  `$tbl_name` ORDER BY Answer_Count DESC,Date_created DESC ";
 
 $sql1="SELECT id FROM `$tbl_name2` WHERE `username` =  '".$uname. "'";
 
