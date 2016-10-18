@@ -27,7 +27,9 @@ $uname = $_SESSION['username'];
 	<h1>Post a Question </h1>
 	<?php
 	$uname = $_SESSION['username'];
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 	$sql1="SELECT uid FROM `$tbl_name2` WHERE `username` =  '".$uname. "'";
     //$result=$db->query($sql);
 
