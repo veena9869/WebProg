@@ -112,6 +112,8 @@ $u_id = $rows['uid'];
 </form>
 </div>
     </div>
+    </div>
+    </body>
 </html>
 
 
