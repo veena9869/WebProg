@@ -10,11 +10,7 @@ $clientSecrect ="";
 <head>
 <title> Milestone 1</title>
 <meta charset="UTF-8">
-<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet"> 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="searchscript.js"></script>
-<script src="script.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
@@ -24,11 +20,13 @@ $clientSecrect ="";
 <div class="login">
 <div class="olduser">
 <form name="form1" method="post" action="Login_Verification.php" accept-charset="UTF-8">
-<header>Login here</header>
+<h3>Login here</h3>
+    </br>
+    </br>
 <strong>Username:</strong>
-<input name="username" type="text" id="username">
+<input name="username" type="text" id="username" placeholder="Enter username">
 <strong>Password:</strong>
-<input name="password" type="password" id="password">
+<input name="password" type="password" id="password" placeholder="Enter password">
 </br></br>
 <input type="submit" name="Submit" value="Login">
 </form>
