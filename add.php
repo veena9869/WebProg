@@ -1,7 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 session_start();
 
 
@@ -40,9 +38,14 @@ $result=$db->query($sql);
 
 $id = "SELECT qid FROM `$tbl_name` WHERE `Title` = '".$topic."'";
 $resi =$db->query($id);
-echo $sql;
 $rowi = mysqli_fetch_array($resi);
 $ques = $rowi['qid'];
+if($result){
 header("location:index.php");
+}
+else
+{
+    echo "error";
+}
 ?>
 
