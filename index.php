@@ -1,6 +1,8 @@
 <?php
 //SELECT * FROM `question` INNER JOIN `user` on question.u_id = user.id 
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 include_once "Db_Configure.php";
 $tbl_name="questions";
