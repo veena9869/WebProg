@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	include_once 'Db_config.php';
+	include_once 'Db_Config.php';
 
 	$conn = new mysqli($servername, $username, $password, $dbname);
 
