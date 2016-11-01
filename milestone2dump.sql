@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Oct 26, 2016 at 04:00 PM
+-- Generation Time: Nov 01, 2016 at 07:45 AM
 -- Server version: 5.5.49-log
 -- PHP Version: 7.0.9
 
@@ -36,18 +36,42 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `a_content` text NOT NULL,
   `a_rating` int(11) NOT NULL,
   `a_order` int(11) NOT NULL,
-  `a_best` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `a_best` int(11) NOT NULL,
+  `a_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `answer`
 --
 
-INSERT INTO `answer` (`a_id`, `a_asker`, `a_topic`, `a_content`, `a_rating`, `a_order`, `a_best`) VALUES
-(1, 'pvenkman', '', 'she did not have any option', 0, 1, 1),
-(2, 'jbrunelle', '', 'She will not die', 0, 2, 1),
-(4, 'pvenkman', '', 'She was shocked as he had blood of aking', 0, 3, 1),
-(1, 'admin', '', '123', 0, 4, 0);
+INSERT INTO `answer` (`a_id`, `a_asker`, `a_topic`, `a_content`, `a_rating`, `a_order`, `a_best`, `a_timestamp`) VALUES
+(1, 'pvenkman', '', 'she did not have any option', 1, 1, 1, '0000-00-00 00:00:00'),
+(2, 'jbrunelle', '', 'She will not die', 0, 2, 1, '0000-00-00 00:00:00'),
+(4, 'pvenkman', '', 'She was shocked as he had blood of aking', 0, 3, 1, '0000-00-00 00:00:00'),
+(1, 'admin', '', '123', -1, 4, 0, '0000-00-00 00:00:00'),
+(1, 'admin', '', 'to servive', 0, 5, 0, '2016-10-28 15:49:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answer_votes`
+--
+
+DROP TABLE IF EXISTS `answer_votes`;
+CREATE TABLE IF NOT EXISTS `answer_votes` (
+  `vid` int(11) NOT NULL,
+  `v_aorder` int(11) NOT NULL,
+  `v_uid` int(11) NOT NULL,
+  `vote` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `answer_votes`
+--
+
+INSERT INTO `answer_votes` (`vid`, `v_aorder`, `v_uid`, `vote`) VALUES
+(3, 1, 1, 1),
+(4, 4, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -61,32 +85,34 @@ CREATE TABLE IF NOT EXISTS `question` (
   `q_asker` varchar(20) NOT NULL,
   `q_title` varchar(500) NOT NULL,
   `q_content` text NOT NULL,
-  `q_value` int(11) NOT NULL
+  `q_value` int(11) NOT NULL,
+  `q_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`q_id`, `q_asker`, `q_title`, `q_content`, `q_value`) VALUES
-(1, 'admin', 'Why does Arya want to go to Braavos?\r\n', 'At this episode 4 why does Arya want to go to Braavos?\r\n\r\n', 0),
-(2, 'admin', 'Who will kill Circy', 'How does Circy meet her death?', 0),
-(3, 'jbrunelle', 'Where is Gendry', 'Where is he gone', 0),
-(4, 'jbrunelle', ' Why did Melisandre look so fascinated by Jon Snow?', 'Why was she amazed by looking at him', 0),
-(5, 'pvenkman', 'Is the Hound dead?', 'Was he left by Arya to die?', 0);
+INSERT INTO `question` (`q_id`, `q_asker`, `q_title`, `q_content`, `q_value`, `q_timestamp`) VALUES
+(1, 'admin', 'Why does Arya want to go to Braavos?\r\n', 'At this episode 4 why does Arya want to go to Braavos?\r\n\r\n', 1, '0000-00-00 00:00:00'),
+(2, 'admin', 'Who will kill Circy', 'How does Circy meet her death?', 0, '0000-00-00 00:00:00'),
+(3, 'jbrunelle', 'Where is Gendry', 'Where is he gone', 0, '0000-00-00 00:00:00'),
+(4, 'jbrunelle', ' Why did Melisandre look so fascinated by Jon Snow?', 'Why was she amazed by looking at him', 0, '0000-00-00 00:00:00'),
+(5, 'pvenkman', 'Is the Hound dead?', 'Was he left by Arya to die?', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `type`
+-- Table structure for table `question_votes`
 --
 
-DROP TABLE IF EXISTS `type`;
-CREATE TABLE IF NOT EXISTS `type` (
-  `t_id` int(11) NOT NULL,
-  `t_name` varchar(2000) NOT NULL,
-  `t_description` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `question_votes`;
+CREATE TABLE IF NOT EXISTS `question_votes` (
+  `qvid` int(11) NOT NULL,
+  `qv_qid` int(11) NOT NULL,
+  `qv_uid` int(11) NOT NULL,
+  `qv_vote` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -134,16 +160,22 @@ ALTER TABLE `answer`
   ADD PRIMARY KEY (`a_order`);
 
 --
+-- Indexes for table `answer_votes`
+--
+ALTER TABLE `answer_votes`
+  ADD PRIMARY KEY (`vid`);
+
+--
 -- Indexes for table `question`
 --
 ALTER TABLE `question`
   ADD PRIMARY KEY (`q_id`);
 
 --
--- Indexes for table `type`
+-- Indexes for table `question_votes`
 --
-ALTER TABLE `type`
-  ADD PRIMARY KEY (`t_id`);
+ALTER TABLE `question_votes`
+  ADD PRIMARY KEY (`qvid`);
 
 --
 -- Indexes for table `users`
@@ -159,17 +191,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `a_order` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `a_order` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `answer_votes`
+--
+ALTER TABLE `answer_votes`
+  MODIFY `vid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
   MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `type`
+-- AUTO_INCREMENT for table `question_votes`
 --
-ALTER TABLE `type`
-  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `question_votes`
+  MODIFY `qvid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
