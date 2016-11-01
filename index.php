@@ -35,7 +35,7 @@ error_reporting(0);
       <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
       <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
         <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
-        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
+        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a><br><br>
         
         
         <?php
