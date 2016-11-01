@@ -38,8 +38,6 @@ error_reporting(0);
         <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
         
         
-        <button type="button" class="btn btn-warning">Votes</button> <br><br> 
-        
         <?php
         if($_SESSION['logged_in'])
         {
