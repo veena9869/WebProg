@@ -25,9 +25,6 @@
       <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
         <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
         <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
-        
-        
-        <button type="button" class="btn btn-warning">Votes</button> <br><br> 
       </div>
         </div>
     </div>

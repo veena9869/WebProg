@@ -61,9 +61,7 @@ $sql4 = "INSERT INTO question_votes (qv_aorder,qv_uid,  qv_vote)
     
     unset($_SESSION['questionNum']);
 	  mysqli_close($conn);
-    die();
-
-              
+    die();       
 
 ?>
 
