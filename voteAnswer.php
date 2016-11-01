@@ -53,15 +53,12 @@ $sql4 = "INSERT INTO answer_votes (v_aorder,v_uid,  vote)
 
     else
     {
-        //echo $rateup."hasgd".$sql1."hasgd".$sql2;
       header("Location: $url");
     }
     
     unset($_SESSION['questionNum']);
 	  mysqli_close($conn);
-    die();
-
-              
+    die();         
 
 ?>
 

@@ -3,9 +3,7 @@
   include_once "Db_Config.php";
   session_start();
 	
-  //$url = "answersdisplay.php?var=" . intval($_SESSION['questionNum']);
-  
-  $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 $conn1 = new mysqli($servername, $username, $password, $dbname);
 $conn2 = new mysqli($servername, $username, $password, $dbname);
 $sqlvote = "select * from question_votes where qv_uid= '$_POST[uid]'and qv_aorder ='$_POST[id]'";
@@ -31,37 +29,30 @@ $sql4 = "INSERT INTO question_votes (qv_aorder,qv_uid,  qv_vote)
     {
       $conn->query($sql1);
       $conn1->query($sql3);
-       // echo "is_null up";
       header("Location: Questions.php");
     }
      else
-        // echo "null up";
          header("Location: Questions.php");
     }
-
     else if(isset($_POST['down']))
     {
         if(is_null($rowvote['qvid']))
     {
       $conn->query($sql2);
       $conn1->query($sql4);
-        //    echo "is_null down";
       header("Location: Questions.php"); 
     }
      else
-       //  echo "null down";
          header("Location: Questions.php");
     }
-
     else
     {
-    // echo "error";   //echo $rateup."hasgd".$sql1."hasgd".$sql2;
       header("Location: Questions.php");
     }
     
     unset($_SESSION['questionNum']);
-	  mysqli_close($conn);
-    die();       
+    mysqli_close($conn);
+    die();         
 
 ?>
 
