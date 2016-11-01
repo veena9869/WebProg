@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Thrones Realm </title>
+    <title>Thrones Realm </title>
+    <meta charset="utf-8">
+    <meta http-eqiuv="XUA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width,intitail-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
-    <style>
-        .description {
-    background-color: while; /* Green */
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;            
-    cursor: pointer;
-    float: left;
-}
-        
-    </style>
+
 <body>
-<div>
-        <?php
+
+
+    <div class="jumbotron">
+        <div class="container">
+        <h1>Thrones Realm</h1>
+        <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
+
+        
+            <a href="loginform.php">
+                <button type="button" class="btn btn-success">Login or Register</button>
+            </a>
+            <a href="index.php">
+                <button type="button" class="btn btn-danger">Home</button>
+            </a>
+            <a href="Questions.php">
+                <button type="button" class="btn btn-primary">Questions</button>
+            </a>
+            <a href="SubmitQuest.php">
+                <button type="button" class="btn btn-success">Post a Question</button>
+            </a>
+            <a href="Profile.php">
+                <button type="button" class="btn btn-primary">Profile</button>
+            </a>
+            <button type="button" class="btn btn-warning">Votes</button>
+            <br>
+            <br>
+        </div>
+    </div>
+    
+
+            <?php
 				ini_set('display_errors', 1);
                 ini_set('display_startup_errors', 1);
                 error_reporting(E_ALL);
@@ -36,57 +60,104 @@
        
 				$result = $conn->query($sql);        
                 $row=$result->fetch_assoc();
-                echo '<h2 class="page-header">'.$row['q_title'].'</h2>';
-                echo'<div class="description-div">
-                        <div class= "description">                    
-                            <div class = "content">'.$row['q_content'] .'</div>
-                            <div class = "asker"> -'. $row['q_asker'] .'</div>                    
-                        </div>
-                        <div class = "description-voting">
+                $uid=$row['user_id'];
+                
+                echo '
+                
+                <div class="container">
+                <div class="well">
+                <div class="row">
+                <h2 class="page-header" style = "color:black">'.$row['q_title'].'</h2>';
+    
+                echo'
+                        <div class="col-xs-12 col-sm-8" >                    
+                            <div class = "content" style = "color:black">Question Description- '.$row['q_content'] .'</div>
+                            <div class = "asker" style = "color:black">  Posted By- '. $row['q_asker'] .'</div>                    
+                        </div>';
+                   if($_SESSION['username']!= null ){     
+                       echo' 
+                       <div class = "col-xs-12 col-sm-2" style="color:black">
                             <form method="post" action="voteQuestion.php">
 							     <input type="submit" name="up" value="up">
 							     <input type="hidden" name="id" value="'.$questionID . '">
-				            </form>
+                                 <input type="hidden" name="uid" value="'.$uid . '">
+				            </form>votes 
+                            '.$row['q_value'].'
                             <form method="post" action="voteQuestion.php">
 							     <input type="submit" name="down" value="down">
 							     <input type="hidden" name="id" value="'.$questionID . '">
+                                 <input type="hidden" name="uid" value="'.$uid . '">
 							 </form>
                         </div>
+                        </div>
                     </div>';
-                
-                 
+                   }
+                 else{
+                echo '<div class = "answer">
+                      <form method="post" ">
+                        <button onclick = "alertlogin()">up</button>
+                      </form>
+                      '.$row['q_value'].'
+                      <form method="post" ">
+					    <button onclick = "alertlogin()">down</button>
+				    </form>
+                </div>';
+                }
                   echo '  <div class= "submit-answer">
 										<form method="post" action="submitAnswer.php" method="post">
-								         <br><textarea class="form-control" rows="3" name="answer" /></textarea>
+								         <br><textarea class="form-control" rows="3" name="answer" /></textarea><br>
 								         <input type="submit" name="submit"	value="Submit" >
 								         <input type="hidden" name="id" value="'.$_SESSION['questionNum']. '">
 										 </form>
-						              </div>';?>
-	</div>
+						              </div><br><br>';?>
+	
 	<div>
 		<?php
 			$conn1 = new mysqli($servername, $username, $password, $dbname);
 			$sql2 = "SELECT * FROM question JOIN answer ON question.q_id = answer.a_id
 					WHERE question.q_id = '$questionID'	ORDER BY a_best DESC,a_rating DESC";
+        
         $result2 = mysqli_query($conn1,$sql2);
+        
 
         while($row = mysqli_fetch_assoc($result2)){
-            echo '<div class = "answer">
+            
+            if($_SESSION['username']!= null ){
+            echo '<div class = "container">
+            <div class = "well">
+            <div class = "row">
+            <div class = "col-xs-12 col-sm-2" style="color:black">
                       <form method="post" action="voteAnswer.php">
                         <input type="submit" name="up" value="up">
                         <input type="hidden" name="id" value="'.$row['a_order'] . '">
-				    </form>
+                        <input type="hidden" name="uid" value="'.$uid . '">
+				    </form>votes 
                      '.$row['a_rating']. '
                     <form method="post" action="voteAnswer.php">
 					    <input type="submit" name="down" value="down">
 					    <input type="hidden" name="id" value="'.$row['a_order'] . '">
+                        <input type="hidden" name="uid" value="'.$uid . '">
 					</form>
-                </div>
-                <div class="answer">
-							              <div>'. $row['a_content'] .'</div>
-                                          <div>'. $row['a_asker'] .'</div>
+                </div>';
+            }
+            else{
+                echo '<div class = "col-xs-12 col-sm-2">
+                      <form method="post" ">
+                        <button onclick = "alertlogin()">up</button>
+                      </form> votes 
+                     '.$row['a_rating']. '
+                    <form method="post" ">
+					    <button onclick = "alertlogin()">down</button>
+				    </form>
+                </div>';
+            }
+                
+               echo' <div class="col-xs-12 col-sm-8" style="text-align:center">
+							              <div style="color:black">'. $row['a_content'] .'</div>
+                                          <div style="color:black">-'. $row['a_asker'] .'</div>
 			                  </div>
-                <div class = "answer">';
+                              <div class = "col-xs-12 col-sm-2">';
+            
             if($_SESSION['username'] == $row['q_asker'] && $row['a_best']==0){                
 				echo '<form method="post" action="submitBest.php">
                 <span class= "glyphicon glyphicon-thumbs-up"></span>
@@ -97,16 +168,23 @@
                 }
             else if($row['a_best']==1){
                 echo '<form method="post" action="submitBest.php">
+                <span class= "glyphicon glyphicon-thumbs-up" style="color:green"></span>
 			    <input type="submit" name="select" value="liked">
 			    <input type="hidden" name="id" value="'.$row['a_order']. '">
                 <input type ="hidden" name = "best" value = "'.$row['a_best']. '">             
 			    </form>';
             }
-            echo'</div>';
+            echo'</div>
+            </div>
+            </div>
+            </div>';
+            
         
             
         }			
 		?>
-	</div>
+    </div>
+    
 </body>
+
 </html>

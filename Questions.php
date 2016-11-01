@@ -19,15 +19,6 @@ error_reporting(0);
   <link href="main.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-    
-<!--<script>
-function popupCenter(pageURL, title, w, h) {
-    var left = (screen.width / 2)  - (w / 2);
-    var top  = (screen.height / 2) - (h / 2);
-    var targetWin = window.open(pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-}
-</script>-->
-    
 </head>
         
 <body>
@@ -42,8 +33,9 @@ function popupCenter(pageURL, title, w, h) {
       <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
       <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
         <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
+        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
         <button type="button" class="btn btn-info">Unaswered</button>
-        <button type="button" class="btn btn-warning">Votes</button>  
+        <button type="button" class="btn btn-warning">Votes</button> <br><br> 
         
         
         <?php
@@ -61,6 +53,9 @@ function popupCenter(pageURL, title, w, h) {
 
         <div class="col-md-6">
             <?php
+            
+            
+            
 
               include_once 'Db_Config.php';
               
@@ -68,7 +63,7 @@ function popupCenter(pageURL, title, w, h) {
               if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
               }
-              $sql = "SELECT *  FROM question ORDER BY q_value DESC";
+              $sql = "SELECT *  FROM question  ORDER BY q_value DESC";
               $result = $conn->query($sql);
 
               while($row = mysqli_fetch_array($result))
