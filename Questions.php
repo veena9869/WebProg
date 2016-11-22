@@ -114,7 +114,7 @@ $bbcode = new BBCode;
                             <div class="votes" >
                                 <div class="views" >
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . html_entity_decode($bbcode->Parse($row['q_title'] )).
-                                    '</a> <br>' . $row['q_asker'] . ' <br>Question Score:'. $row['q_value'] . '<br> User Score: '.$row['asker_score'].'
+                                    '</a> <br>' . $row['q_asker'] . ' <br> User Score: '.$row['asker_score'].'
                                     
                                 </div>';
                   $ip=0;

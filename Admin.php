@@ -78,8 +78,7 @@ error_reporting(0);
                             <div class="votes" >
                                 <div class="views" >
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . $row['q_title'] .
-                                    '</a>  <br><a href = "Profile2.php? var='.$row['q_asker'].'" style ="color:blue">'. $row['q_asker'] . '</a> '. $row['q_value'].
-                      '<div align="right">';
+                                    '</a>  <br><a href = "Profile2.php? var='.$row['q_asker'].'" style ="color:blue">'. $row['q_asker'] . '</a> <br> User Score: '.$row['asker_score'].'<div align="right">';
                   if($freeze==0){
                       //echo'<a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green"></a>';
                      echo '<a href = "Freeze.php? var='.$row['q_id'] . '"><button type="button" class="btn btn-info" >Freeze</button></a>';
