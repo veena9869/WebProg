@@ -46,9 +46,10 @@ function freeze() {
             <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
-        $sqladmin = 'select admin from users where user_name="'.$_SESSION['username'].'"';
+        $sqladmin = 'select * from users where user_name="'.$_SESSION['username'].'"';
         $resultadmin = $conn->query($sqladmin);
         $rowadmin = mysqli_fetch_array($resultadmin);
+            $id=$rowadmin['user_id'];
         
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
@@ -99,7 +100,7 @@ function freeze() {
                             <form method="post" action="voteQuestion.php">
 							     <input type="submit" name="up" value="up">
 							     <input type="hidden" name="id" value="'.$questionID . '">
-                                 <input type="hidden" name="uid" value="'.$uid . '">
+                                 <input type="hidden" name="uid" value="'.$id . '">
                                  <input type="hidden" name="asker" value="'.$row['q_asker'] . '">
                                  
 				            </form>votes 
@@ -107,7 +108,7 @@ function freeze() {
                             <form method="post" action="voteQuestion.php">
 							     <input type="submit" name="down" value="down">
 							     <input type="hidden" name="id" value="'.$questionID . '">
-                                 <input type="hidden" name="uid" value="'.$uid . '">
+                                 <input type="hidden" name="uid" value="'.$id . '">
                                  <input type="hidden" name="asker" value="'.$row['q_asker'] . '">
 							 </form>
                              

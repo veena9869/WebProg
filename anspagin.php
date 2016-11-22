@@ -47,9 +47,10 @@ function freeze() {
             <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
-        $sqladmin = 'select admin from users where user_name="'.$_SESSION['username'].'"';
+        $sqladmin = 'select * from users where user_name="'.$_SESSION['username'].'"';
         $resultadmin = $conn->query($sqladmin);
         $rowadmin = mysqli_fetch_array($resultadmin);
+            $id=$rowadmin['user_id'];
         
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
@@ -101,13 +102,13 @@ function freeze() {
                             <form method="post" action="voteQuestion.php">
 							     <input type="submit" name="up" value="up">
 							     <input type="hidden" name="id" value="'.$questionID . '">
-                                 <input type="hidden" name="uid" value="'.$uid . '">
+                                 <input type="hidden" name="uid" value="'.$id . '">
 				            </form>votes 
                             '.$row['q_value'].'
                             <form method="post" action="voteQuestion.php">
 							     <input type="submit" name="down" value="down">
 							     <input type="hidden" name="id" value="'.$questionID . '">
-                                 <input type="hidden" name="uid" value="'.$uid . '">
+                                 <input type="hidden" name="uid" value="'.$id . '">
 							 </form>
                              
                         </div>
@@ -153,6 +154,7 @@ function freeze() {
             $rowans = mysqli_fetch_array($resultans);
             $anscount=$rowans['anscount']/2;
         $page=($_GET['var1']-1)*2;
+        
         
             
             while( $i<$anscount)
