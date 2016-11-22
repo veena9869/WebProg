@@ -90,7 +90,7 @@ $bbcode = new BBCode;
   </ul>';
                 
             }
-            $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
+            $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",10";
             $result = $conn->query($sql);
             
               while($row = mysqli_fetch_array($result))
@@ -100,13 +100,14 @@ $bbcode = new BBCode;
             $rowans = mysqli_fetch_array($resultans);
             $anscount=$rowans['anscount'];
                  // echo "anscount=".$anscount;
-                  if($anscount%2==0)
+                  if($anscount%10==0)
                   {
-                      $anscount=$anscount/2;
+                      $anscount=$anscount/10;
                   }
                   else
                   {
-                      $anscount=($anscount+1)/2;
+                      $anscount=($anscount)/10;
+                      
                   }
                   echo'<div class="container" >
                     <div class="well" style ="color:green">
