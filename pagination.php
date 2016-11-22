@@ -1,5 +1,5 @@
 <?php
-$page=($_GET['var']-1)*10;
+$page=($_GET['var']-1)*2;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
 $bbcode = new BBCode;
