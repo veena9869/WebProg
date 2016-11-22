@@ -80,7 +80,12 @@ $bbcode = new BBCode;
               
             $resultquestions = $conn->query($sqlquestions);
             $rowquestions = mysqli_fetch_array($resultquestions);
-            $questioncount=$rowquestions['questioncount']/10;
+            
+            $questioncount=$rowquestions['questioncount'];
+            if($questioncount%10==0)
+                $questioncount=$questioncount/10;
+            else
+                $questioncount=($questioncount+10)/10
             $page=0;
             while( $i<$questioncount)
             {
