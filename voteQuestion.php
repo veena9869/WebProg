@@ -74,7 +74,7 @@ $sql9 = 'UPDATE answer
 $conn->query($sql8);
 $conn->query($sql9);
 //echo $askerscore;
-    //header("Location: Questions.php");
+    header("Location: Questions.php");
     
     unset($_SESSION['questionNum']);
 	  mysqli_close($conn);
