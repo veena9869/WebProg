@@ -85,7 +85,7 @@ $bbcode = new BBCode;
             if($questioncount%10==0)
                 $questioncount=$questioncount/10;
             else
-                $questioncount=($questioncount+10)/10
+                $questioncount=($questioncount+10)/10;
             $page=0;
             while( $i<$questioncount)
             {
