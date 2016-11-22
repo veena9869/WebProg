@@ -81,7 +81,7 @@ error_reporting(0);
               
             $resultquestions = $conn->query($sqlquestions);
             $rowquestions = mysqli_fetch_array($resultquestions);
-            $questioncount=$rowquestions['questioncount']/2;
+            $questioncount=$rowquestions['questioncount']/10;
             
             
             while( $i<$questioncount)
