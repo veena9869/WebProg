@@ -1,5 +1,5 @@
 <?php
-$page=($_GET['var']-1)*2;
+$page=($_GET['var']-1)*10;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
 $bbcode = new BBCode;
@@ -92,7 +92,7 @@ error_reporting(0);
   </ul>';
                 
             }
-$sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
+$sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",10";
             $result = $conn->query($sql);
               while($row = mysqli_fetch_array($result))
                 {  

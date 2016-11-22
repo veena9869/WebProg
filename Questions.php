@@ -90,7 +90,7 @@ $bbcode = new BBCode;
   </ul>';
                 
             }
-            $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
+            $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",10";
             $result = $conn->query($sql);
             
               while($row = mysqli_fetch_array($result))
