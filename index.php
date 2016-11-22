@@ -95,7 +95,7 @@ error_reporting(0);
                             <div class="votes" >
                                 <div class="views" >
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . $row['q_title'] .
-                                    '</a> <br>' . $row['q_asker'] . ' <br>Question Score:'. $row['q_value'] . '<br> User Score: '.$row['asker_score'].'
+                                    '</a> <br>' . $row['q_asker'] . ' User Score: '.$row['asker_score'].'
                                 </div>
                             </div>
                         </div>
