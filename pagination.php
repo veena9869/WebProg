@@ -92,7 +92,7 @@ error_reporting(0);
   </ul>';
                 
             }
-            echo "page=".$page;
+            //echo "page=".$page;
 $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
             $result = $conn->query($sql);
               while($row = mysqli_fetch_array($result))
