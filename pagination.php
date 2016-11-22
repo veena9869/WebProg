@@ -116,7 +116,7 @@ $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
                                 <div class="views" >
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . 
                       html_entity_decode($bbcode->Parse($row['q_title'])) .
-                                    '</a> <br>' . $row['q_asker'] . ' Score:'. html_entity_decode($bbcode->Parse($row['q_value'])) . '
+                                    '</a> <br>' . $row['q_asker'] . ' <br>User Score: '.$row['asker_score'].'
                                 </div>';
                   $ip=0;
                                 while( $ip<$anscount){

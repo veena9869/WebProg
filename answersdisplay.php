@@ -100,12 +100,15 @@ function freeze() {
 							     <input type="submit" name="up" value="up">
 							     <input type="hidden" name="id" value="'.$questionID . '">
                                  <input type="hidden" name="uid" value="'.$uid . '">
+                                 <input type="hidden" name="asker" value="'.$row['q_asker'] . '">
+                                 
 				            </form>votes 
                             '.$row['q_value'].'
                             <form method="post" action="voteQuestion.php">
 							     <input type="submit" name="down" value="down">
 							     <input type="hidden" name="id" value="'.$questionID . '">
                                  <input type="hidden" name="uid" value="'.$uid . '">
+                                 <input type="hidden" name="asker" value="'.$row['q_asker'] . '">
 							 </form>
                              
                         </div>
