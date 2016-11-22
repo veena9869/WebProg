@@ -80,7 +80,7 @@ $bbcode = new BBCode;
               
             $resultquestions = $conn->query($sqlquestions);
             $rowquestions = mysqli_fetch_array($resultquestions);
-            $questioncount=$rowquestions['questioncount']/2;
+            $questioncount=$rowquestions['questioncount']/10;
             $page=0;
             while( $i<$questioncount)
             {
@@ -90,7 +90,7 @@ $bbcode = new BBCode;
   </ul>';
                 
             }
-            $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",10";
+            $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
             $result = $conn->query($sql);
             
               while($row = mysqli_fetch_array($result))
@@ -100,14 +100,13 @@ $bbcode = new BBCode;
             $rowans = mysqli_fetch_array($resultans);
             $anscount=$rowans['anscount'];
                  // echo "anscount=".$anscount;
-                  if($anscount%10==0)
+                  if($anscount%2==0)
                   {
-                      $anscount=$anscount/10;
+                      $anscount=$anscount/2;
                   }
                   else
                   {
-                      $anscount=($anscount)/10;
-                      
+                      $anscount=($anscount+1)/2;
                   }
                   echo'<div class="container" >
                     <div class="well" style ="color:green">
