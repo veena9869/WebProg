@@ -81,11 +81,7 @@ $bbcode = new BBCode;
             $resultquestions = $conn->query($sqlquestions);
             $rowquestions = mysqli_fetch_array($resultquestions);
             
-            $questioncount=$rowquestions['questioncount'];
-            if($questioncount%10==0)
-                $questioncount=$questioncount/10;
-            else
-                $questioncount=($questioncount+10)/10;
+            $questioncount=$rowquestions['questioncount']/2;
             $page=0;
             while( $i<$questioncount)
             {
@@ -95,7 +91,7 @@ $bbcode = new BBCode;
   </ul>';
                 
             }
-            $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",10";
+            $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
             $result = $conn->query($sql);
             
               while($row = mysqli_fetch_array($result))
