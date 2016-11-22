@@ -68,7 +68,7 @@
 
         <div class="col-md-6">';
             
-             echo "You are now viewing " .$requser."'s profile";
+             echo "You are now viewing " .$requser."'s profile<br>";
             
              $sqluser="select user_id from users where user_name='".$requser."'";
         $resultuser = $conn->query($sqluser);        
@@ -90,9 +90,13 @@
 					
             }    
             $sql = 'SELECT * FROM question WHERE q_asker = "' . $requser . '"';
+      $sqlquescount='SELECT count(*) as quescount FROM question WHERE q_asker = "' . $requser . '"';
             
               $result = $conn->query($sql);
-
+      $resultcount = $conn->query($sqlquescount);
+      $rowcount = mysqli_fetch_array($resultcount);
+      $questcount=$rowcount['quescount'];
+      echo"No. of questions posted by ".$requser." is ".$questcount;
               while($row = mysqli_fetch_array($result))
                 {  
                   echo'<div class="container" >
