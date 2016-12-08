@@ -11,6 +11,7 @@
   <script src="js/bootstrap.min.js"></script>
     <link href="login.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head> 
     
 <body  class="container" >
@@ -23,6 +24,8 @@
 
     <label><b>Password</b></label>
     <input type="password" name="pword" id="password" placeholder="Enter Password" name="psw" required>
+    
+    <div class="g-recaptcha" data-sitekey="6Lf9OQ4UAAAAAKGw90kFTI-EdMPCXHQDv977ghQR"></div>
         
     <input class = "button" type="submit" name="login-submit" id="login-submit" value = "Login">
     <a href="register.php"><button type="button" class="button1" class="btn btn-success">Register</button></a>
