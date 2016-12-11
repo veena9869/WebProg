@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Dec 11, 2016 at 05:43 AM
+-- Generation Time: Dec 11, 2016 at 05:48 AM
 -- Server version: 5.5.49-log
 -- PHP Version: 5.6.24
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `thrones`
 --
+CREATE DATABASE IF NOT EXISTS `thrones` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `thrones`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `answer`
 --
 
+DROP TABLE IF EXISTS `answer`;
 CREATE TABLE IF NOT EXISTS `answer` (
   `a_id` int(11) NOT NULL,
   `a_asker` varchar(20) NOT NULL,
@@ -64,6 +67,7 @@ INSERT INTO `answer` (`a_id`, `a_asker`, `a_topic`, `a_content`, `a_rating`, `a_
 -- Table structure for table `answer_votes`
 --
 
+DROP TABLE IF EXISTS `answer_votes`;
 CREATE TABLE IF NOT EXISTS `answer_votes` (
   `vid` int(11) NOT NULL,
   `v_aorder` int(11) NOT NULL,
@@ -85,6 +89,7 @@ INSERT INTO `answer_votes` (`vid`, `v_aorder`, `v_uid`, `vote`) VALUES
 -- Table structure for table `avatar`
 --
 
+DROP TABLE IF EXISTS `avatar`;
 CREATE TABLE IF NOT EXISTS `avatar` (
   `avatarid` int(11) NOT NULL,
   `avatar_uid` int(11) NOT NULL,
@@ -107,6 +112,7 @@ INSERT INTO `avatar` (`avatarid`, `avatar_uid`, `filename`, `filetype`) VALUES
 -- Table structure for table `qa_blobs`
 --
 
+DROP TABLE IF EXISTS `qa_blobs`;
 CREATE TABLE IF NOT EXISTS `qa_blobs` (
   `blobid` bigint(20) unsigned NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -128,6 +134,7 @@ INSERT INTO `qa_blobs` (`blobid`, `filename`, `userid`, `created`) VALUES
 -- Table structure for table `qa_users`
 --
 
+DROP TABLE IF EXISTS `qa_users`;
 CREATE TABLE IF NOT EXISTS `qa_users` (
   `userid` int(10) unsigned NOT NULL,
   `created` datetime NOT NULL,
@@ -144,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `qa_users` (
 -- Table structure for table `question`
 --
 
+DROP TABLE IF EXISTS `question`;
 CREATE TABLE IF NOT EXISTS `question` (
   `q_id` int(11) NOT NULL,
   `q_asker` varchar(20) NOT NULL,
@@ -175,6 +183,7 @@ INSERT INTO `question` (`q_id`, `q_asker`, `q_title`, `q_content`, `q_value`, `q
 -- Table structure for table `question_votes`
 --
 
+DROP TABLE IF EXISTS `question_votes`;
 CREATE TABLE IF NOT EXISTS `question_votes` (
   `qvid` int(11) NOT NULL,
   `qv_qid` int(11) NOT NULL,
@@ -199,6 +208,7 @@ INSERT INTO `question_votes` (`qvid`, `qv_qid`, `qv_uid`, `qv_vote`) VALUES
 -- Table structure for table `type`
 --
 
+DROP TABLE IF EXISTS `type`;
 CREATE TABLE IF NOT EXISTS `type` (
   `t_id` int(11) NOT NULL,
   `t_name` varchar(2000) NOT NULL,
@@ -211,6 +221,7 @@ CREATE TABLE IF NOT EXISTS `type` (
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(20) CHARACTER SET utf8mb4 NOT NULL,
