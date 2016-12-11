@@ -1,9 +1,15 @@
 <?php
-	session_start();
-
 	include_once 'Db_Config.php';
+session_start();
 
-	$conn = new mysqli($servername, $username, $password, $dbname);
+$secret="6Lf6OA4UAAAAAA8r-GgEtEVvcu9z8a8BFPjtppg6";
+$response=$_POST["g-recaptcha-response"];
+$verify=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
+$captcha_success=json_decode($verify);
+
+if ($captcha_success->success==true) {
+    
+  $conn = new mysqli($servername, $username, $password, $dbname);
 
     if ($conn->connect_error) 
 	{
@@ -13,7 +19,7 @@
 	$sql = "SELECT * FROM users where `user_name` = '".$_POST['uname']."'and `user_pw` = '".$_POST['pword']."'";
   
 	$result = $conn->query($sql);
-    
+
     if($_POST["login-submit"])  
 	{ 
 		if ( $result-> num_rows >0) 
@@ -36,4 +42,14 @@
         echo "Login Failed";
 	}
     
+    }
+else if ($captcha_success->success==false) {      
+    echo '
+    <script>
+    alert("You forgot to check the Captcha");
+    window.location.href="loginform.php";
+    </script>
+    ';
+   
+}   
 ?>
