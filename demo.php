@@ -10,7 +10,7 @@ $clientId = "6566405a900d23fa9219";
 $clientSecret = "05f927fdb8edef060b7b2970782441e68fcf3595";
 
 $redirect_url = 'http://vtalapaneni.cs518.cs.odu.edu/demo.php';
-$ROOTURI = 'http://vtalapaneni.cs518.cs.odu.edu/';
+$ROOTURI = 'http://vtalapaneni.cs518.cs.odu.edu/index.php';
 
 if(isset($_GET['code'])) {
   $ch = curl_init();
@@ -33,7 +33,7 @@ if(isset($_GET['code'])) {
 
   if( !$json ||
     !isset($json['access_token']) ||
-    strpos($json['access_token'],' ') !== FALSE){echo "Bad access token. <a href='$ROOTURI'>Reload the page.</a> Try again.";die();
+    strpos($json['access_token'],' ') !== FALSE){echo "Please. <a href='$ROOTURI'>click here to.</a> Try again.";die();
                                                 }
 
   $accessToken = json_decode($server_output,true)["access_token"];
