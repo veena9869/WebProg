@@ -26,6 +26,11 @@
 				<label for="password"><strong>Choose Password: </strong></label>
 				<input type="password" id="password" name="user_pw" />
 			</div>
+            <div>
+                <label for="email"><strong>Enter Email: </strong></label>
+                <input type="email" id="email" name="email" />
+            </div>
+            
 
 			<div class="button">
 				<input class = "button" type="submit" name="register_submit" id="register_submit" value = "Register">
