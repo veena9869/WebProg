@@ -2,7 +2,7 @@
 	include_once 'Db_Config.php';
 session_start();
 
-$secret="6LfdOQ4UAAAAAJ6flcMP2BLbptA28Tf_LiM2CeVt";
+$secret="6LdYeg4UAAAAALKNc97PtYhTYYCx_jJWlvODaw1T";
 $response=$_POST["g-recaptcha-response"];
 $verify=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
 $captcha_success=json_decode($verify);

@@ -25,7 +25,7 @@
     <label><b>Password</b></label>
     <input type="password" name="pword" id="password" placeholder="Enter Password" name="psw" required>
     
-    <div class="g-recaptcha" data-sitekey="6LfdOQ4UAAAAAOGd3HCMu9qFidN24h1ioAbgkS9d"></div>
+    <div class="g-recaptcha" data-sitekey="6LdYeg4UAAAAADj22GSMJPkrvXfzUQ5o__2fLqmM"></div>
                 
     <input class = "button" type="submit" name="login-submit" id="login-submit" value = "Login">
     <a href="register.php"><button type="button" class="button1" class="btn btn-success">Register</button></a>
