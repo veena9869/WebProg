@@ -33,7 +33,7 @@ error_reporting(0);
     <div class="container"><?php
          if(!$_SESSION['logged_in']){
       echo'<a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>';
-             echo '<a href="code.php"><button type="button" class="btn btn-success">Github</button></a>';
+             
         }?>
       <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
       <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
@@ -43,7 +43,7 @@ error_reporting(0);
        <!-- <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>-->
         <a href="help.php"><button type="button" class="btn btn-primary">Help</button></a>
         
-        <a href="demo.php">Github file</a>
+        <a href="demo.php">Github login</a>
        
        
          

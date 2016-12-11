@@ -6,53 +6,55 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$clientId = "6566405a900d23fa9219";
-$clientSecret = "05f927fdb8edef060b7b2970782441e68fcf3595";
+$client_ID = "6566405a900d23fa9219";
+$client_Secret = "05f927fdb8edef060b7b2970782441e68fcf3595";
 
 $redirect_url = 'http://vtalapaneni.cs518.cs.odu.edu/demo.php';
 $ROOTURI = 'http://vtalapaneni.cs518.cs.odu.edu/index.php';
 
 if(isset($_GET['code'])) {
-  $ch = curl_init();
+  $curlinit = curl_init();
 
-  curl_setopt($ch, CURLOPT_URL,"https://github.com/login/oauth/access_token");
-  curl_setopt($ch, CURLOPT_POST, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS,
+  curl_setopt($curlinit, CURLOPT_URL,"https://github.com/login/oauth/access_token");
+  curl_setopt($curlinit, CURLOPT_POST, 1);
+  curl_setopt($curlinit, CURLOPT_POSTFIELDS,
     http_build_query(array(
       'code' => $_GET['code'],
-      'client_id' => $clientId,
-      'client_secret' => $clientSecret
+      'client_id' => $client_ID,
+      'client_secret' => $client_Secret
     ))
   );
-  curl_setopt($ch, CURLOPT_HTTPHEADER,array("Accept: application/json"));
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  $server_output = curl_exec ($ch);
-  curl_close ($ch);
+  curl_setopt($curlinit, CURLOPT_HTTPHEADER,array("Accept: application/json"));
+  curl_setopt($curlinit, CURLOPT_RETURNTRANSFER, true);
+  $curlexec = curl_exec ($curlinit);
+  curl_close ($curlinit);
 
-  $json = json_decode($server_output,true);
+  $jsondecode = json_decode($curlexec,true);
 
-  if( !$json ||
-    !isset($json['access_token']) ||
-    strpos($json['access_token'],' ') !== FALSE){echo "Please. <a href='$ROOTURI'>click here to.</a> Try again.";die();
-                                                }
+  if( !$jsondecode ||  !isset($jsondecode['access_token']) ||strpos($jsondecode['access_token'],' ') !== FALSE)
+  {
+      echo " <a href='$ROOTURI'>Try again</a>";
+        die();
+                                                
+  }
 
-  $accessToken = json_decode($server_output,true)["access_token"];
-$curl = curl_init();
-curl_setopt_array($curl, array(
+  $access_token = json_decode($curlexec,true)["access_token"];
+$ci = curl_init();
+curl_setopt_array($ci, array(
     CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL => 'https://api.github.com/user?access_token='.$accessToken,
+    CURLOPT_URL => 'https://api.github.com/user?access_token='.$access_token,
     CURLOPT_USERAGENT => 'demo',
     CURLOPT_HTTPHEADER => array("Content-Type: application/x-www-form-urlencoded","Accept: application/json")
 ));
 
-$resp = curl_exec($curl);
-curl_close($curl);
+$cexec = curl_exec($ci);
+curl_close($ci);
 
-$git = json_decode($resp,true);
-echo $resp;
+$final = json_decode($cexec,true);
+//echo $cexec;
 
 } else {
-  $url = "https://github.com/login/oauth/authorize?client_id=$clientId&redirect_uri=$redirect_url&scope=user";
+  $url = "https://github.com/login/oauth/authorize?client_id=$client_ID&redirect_uri=$redirect_url&scope=user";
   header("Location: $url");
 }
 ?>
