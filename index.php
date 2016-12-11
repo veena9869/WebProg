@@ -57,7 +57,7 @@ error_reporting(0);
         <?php
         if($_SESSION['logged_in'])
         {
-            echo 'Welcome ' . $_SESSION['username'] .', <a href="Logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
+            echo 'Welcome ' . $_SESSION['username'] .', <a href="logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
              //echo $_SESSION['userscore'];
         echo '<div class="pull-right">
         
