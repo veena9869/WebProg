@@ -1,34 +1,44 @@
-<!DOCTYPE html>
 <html>
-<html lang="en">
 <head>
-  <title>Milestone 1</title>
-  <meta charset="utf-8">
-  <meta http-eqiuv="XUA-Compatible" content="IE-edge">
-  <meta name="viewport" content="width=device-width,intitail-scale=1">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-  <link href="main.css" rel="stylesheet">
-  <link href="login.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+<title>Ajax Image Upload Using PHP and jQuery</title>
+<link rel="stylesheet" href="style.css" />
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="script.js"></script>
+    
     
 </head>
-    
-    
 <body>
+<div class="main">
+<h1>Ajax Image Upload</h1><br/>
+<hr>
+<form id="uploadimage" action="" method="post" enctype="multipart/form-data">
+<div id="image_preview"><img id="previewing" src="noimage.png" /></div>
+    
+    
+    
+    
+    
+<hr id="line">
+<div id="selectImage">
+<label>Select Your Image</label><br/>
+<input type="file" name="file" id="file" required />
+<input type="submit" value="Upload" class="submit" />
+</div>
+</form>
+</div>
+<h4 id='loading' >loading..</h4>
+<div id="message"></div>
+    <div id="resultimage"><img id="results" src="noimage.png"/></div>
+    
+    
 <div class="container">
   <div class="jumbotron">
     <h1>Thrones Realm</h1>
     <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
   
     <div class="container">
-      <a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>
-      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
-      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
-        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
-        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
-        <a href="help.php"><button type="button" class="btn btn-primary">Help</button></a>
+      
         <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -55,7 +65,7 @@
             ini_set('display_startup_errors',1);
             error_reporting(E_ALL);
             
-            chmod("C:/MAMP/htdocs/profilepics/", 777);
+           
             session_start();
             
             $requser = $_GET['var'];
@@ -78,24 +88,24 @@
             $rowuser=mysqli_fetch_assoc($resultuser);
         
         $userid =$rowuser['user_id'];
-            $sqlavatar="select * from avatar where avatar_uid='$userid'";
+            //$sqlavatar="select * from avatar where avatar_uid='$userid'";
 				echo $_SESSION['userID'];
-					$resultavatar = mysqli_query($conn, $sqlavatar);
-					$rowavatar = mysqli_fetch_assoc($resultavatar);
-            echo $rowavatar['filename'];
+					//$resultavatar = mysqli_query($conn, $sqlavatar);
+					//$rowavatar = mysqli_fetch_assoc($resultavatar);
+            /*echo $rowavatar['filename'];
 					 if($rowavatar['filetype'] == '0') {
 						$imgname = $rowavatar['filename'];
                          $path="C:/MAMP/htdocs/profilepics/".$imgname;
 						 echo '<img src="'.$path.'"style="width:304px;height:228px;">';
 						
-					}
+					}*/
 					
-            echo '<form enctype="multipart/form-data" action="fileupload.php" method="post">
+            /*echo '<form enctype="multipart/form-data" action="fileupload.php" method="post">
             <input type="hidden" name="MAX_FILE_SIZE" value="50000">
             <input type = "hidden" name = "uid" value ="'.$_SESSION['userID']. '">
             File: <input type="file" name="fileToUpload" id="fileToUpload">
             <input type="submit" value="Upload Image" name="submit">
-          </form>';
+          </form>';*/
         }       
             
             
@@ -122,4 +132,17 @@
             ?>
         </div>
 </body>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
 </html>
