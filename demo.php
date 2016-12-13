@@ -70,9 +70,12 @@ echo $resp;
 
 $name = $conn -> $git['login'];
 $email = $conn -> $git['email'];
+    
+    $usrname=ltrim($name,'$');
 
     echo $name;
     echo $email;
+    echo $username;
     
    /* $sql1="select * from users where user_name='".$name."' or email='".$email."'";
     $usr=conn->query($sql1);
