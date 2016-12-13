@@ -6,7 +6,7 @@
 	$questionID=$_GET['askerID']; 
 	$aRating = 0;         
     $aID = $_SESSION['questionNum'];
-    $ans=htmlentities($_POST[answer]);
+    $ans=$_POST[answer];
 					
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	$sql = "INSERT INTO answer (a_id,a_asker,  a_content)
