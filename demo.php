@@ -68,8 +68,8 @@ echo $resp;
 
 
 
-$name = $conn -> $git['login'];
-$email = $conn -> $git['email'];
+$name =  $git['login'];
+$email = $git['email'];
     
     $usrname=ltrim($name,'$');
 
