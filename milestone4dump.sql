@@ -195,6 +195,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `tags` varchar(1000) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
+
 --
 -- Dumping data for table `users`
 --
