@@ -71,8 +71,10 @@ echo $resp;
 $name = $conn -> $git['login'];
 $email = $conn -> $git['email'];
 
+    echo $name;
+    echo $email;
     
-    $sql1="select * from users where user_name='".$name."' or email='".$email."'";
+   /* $sql1="select * from users where user_name='".$name."' or email='".$email."'";
     $usr=conn->query($sql1);
     
     if($usr->num_rows==0)
@@ -100,7 +102,7 @@ $email = $conn -> $git['email'];
 
    }
    }
-}
+}*/
 } else {
   $url = "https://github.com/login/oauth/authorize?client_id=$clientId&redirect_uri=$redirect_url&scope=user";
   header("Location: $url");
