@@ -81,7 +81,7 @@ $email = $git['email'];
     $usr=conn->query($sql1);
     
     echo $sql1;
-    echo $usr;
+    //echo $usr;
     
    /* if($usr->num_rows==0)
     {
