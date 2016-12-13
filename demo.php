@@ -88,7 +88,7 @@ $email = $git['email'];
     
     
     
-    if($rowadmin -> num_rows == 0)
+    if(count($rowadmin)== 0)
     {
         echo "inside";
         $sql3 = "INSERT INTO users (user_name,user_pw,email)
