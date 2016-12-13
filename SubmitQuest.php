@@ -59,6 +59,8 @@ div.container {margin-top: 4.5em !important;}
            </textarea><br><br>
            <b>Description</b><br><textarea rows="10" cols="150" name="content" id="input"></textarea>
            <br><br>
+           <b>Tags</b><br><textarea rows="10" cols="150" name="tags" id="input"></textarea>
+           <br><br>
            <input type="submit" value="Submit">
            </form>
            </div>
