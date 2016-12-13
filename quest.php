@@ -18,7 +18,7 @@ if($conn->query($sql)===TRUE)
     header("Location:index.php");
 }
 else
-{
+{ echo $sql;
     echo "Connection Failed";
 }
 
