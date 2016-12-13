@@ -43,7 +43,7 @@ if ($captcha_success->success==true) {
 	}
     
     }
-else if ($captcha_success->success==false) {      
+    else if ($captcha_success->success==false) {      
     echo '
     <script>
     alert("You forgot to check the Captcha");

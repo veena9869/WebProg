@@ -14,27 +14,60 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head> 
     
-<body  class="container" >
+<body >
+<!--<form id="login-form"  action="logIn.php" method="post">-->
+  
+        <div style="margin-top:100px">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong> Sign in to continue</strong>
+					</div>
+					<div class="panel-body">
+						<form role="form" action="logIn.php" method="POST">
+									<div class="col-sm-12 col-md-6  col-md-offset-1 ">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-user"></i>
+												</span> 
+												<input class="form-control" id="username" placeholder="Username" name="uname" type="text" autofocus>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-lock"></i>
+												</span>
+												<input class="form-control" id="password" placeholder="Password" name="pword" type="password" value="">
+											</div>
+										</div>
+                                        <div class="form-group">
+											<div class="input-group">
+												<div class="g-recaptcha" data-sitekey="6LdYeg4UAAAAADj22GSMJPkrvXfzUQ5o__2fLqmM"></div>
+											</div>
+										</div>
+										<div class="form-group">
+											<input type="submit" class="btn btn-lg btn-primary btn-block" name="login-submit" id="login-submit" value="Sign in">
+										</div>
+									</div>
+						</form>
+					</div>
+					<div class="panel-footer ">
+						Don't have an account! <a href="register.php" onClick=""> Sign Up Here </a>
+					</div>
+                </div>
+			</div>
+		</div>
+	</div>
     
-<form id="login-form"  action="logIn.php" method="post">
-    
-    
-    <label><b>Username</b></label>
-    <input type="text" name="uname" id="username" placeholder="Enter Username" name="uname" required>
-
-    <label><b>Password</b></label>
-    <input type="password" name="pword" id="password" placeholder="Enter Password" name="psw" required>
-    
-    <div class="g-recaptcha" data-sitekey="6LdYeg4UAAAAADj22GSMJPkrvXfzUQ5o__2fLqmM"></div>
-                
-    <input class = "button" type="submit" name="login-submit" id="login-submit" value = "Login">
-    <a href="register.php"><button type="button" class="button1" class="btn btn-success">Register</button></a>
-   
-    
-</form>
-    
-
 </body>
 </html>
+
+
+
+
+
 
 
