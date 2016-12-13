@@ -2,6 +2,11 @@
 session_start();
 
 
+
+
+    include_once 'Db_Config.php';
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -59,10 +64,6 @@ curl_close($curl);
 $git = json_decode($resp,true);
 echo $resp;
 
-
-
-    include_once 'Db_Config.php';
-        $conn = new mysqli($servername, $username, $password, $dbname);
     
 
 
@@ -77,13 +78,15 @@ $email = $git['email'];
     echo "email is".$email;
     echo "username is".$usrname;
     
-    $sql1='select * from users';
-    $usr=conn->query($sql1);
+    $sql1='select * from users where user_name="'.$usrname.'"';
+    $usr=$conn->query($sql1);
     
-    //echo $sql1;
+    echo $sql1;
     //echo $usr;
     
-   /* if($usr->num_rows==0)
+       $rowadmin = mysqli_fetch_array($usr);
+    
+    if($rowadmin->num_rows==0)
     {
         
         $sql3 = "INSERT INTO users (user_name,user_pw,email)
@@ -97,7 +100,7 @@ $email = $git['email'];
  }   
     else {
         $sql7="select * from users where user_name='".$usrname."'";
-    $usrdetails=conn->query($sql7);
+    $usrdetails=$conn->query($sql7);
     
     if($usrdetails->num_rows==1)
     {
@@ -109,7 +112,7 @@ $email = $git['email'];
 
    }
    }
-}*/
+}
 } else {
   $url = "https://github.com/login/oauth/authorize?client_id=$clientId&redirect_uri=$redirect_url&scope=user";
   header("Location: $url");
