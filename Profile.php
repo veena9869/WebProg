@@ -30,7 +30,7 @@ div.container {margin-top: 6em !important;}
             error_reporting(E_ALL);
             
             //chmod("C:/MAMP/htdocs/profilepics/", 777);
-            //session_start();
+            session_start();
             
             $requser = $_SESSION['username'];
 
