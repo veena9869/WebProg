@@ -85,34 +85,7 @@ $email = $conn -> $git['email'];
         $sql4="select user_name,user_id from users where user_name='".$name."'";
         $res1=$conn->query($sql4);
     
-         $imgurl = $git['avatar_url'];
-
-    
-
-         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/upload/'.$imgurl.'.jpg')){continue;}
- 
- file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/'.$name.'.jpg',$image);
-        
-        if($res1->num_rows==1)
-        {
-            
-        foreach ($res1 as $key => $value) {
-            
-            $_SESSION['username'] = $value['user_name'];
-   $_SESSION['userID'] = $value['user_id'];
-  
-            
-            $sql5='INSERT into avatar (`avatar_uid`,`filename`,`filetype`) VALUES ('.$_SESSION['userID'].',"'.$imgurl.'", 0);';
-      
-    $conn->query($sql5);
-            
-        
-            echo '<script type="text/javascript">
-   window.location.href = "/";
-   </script>';
-            
-            }
- }
+         
  }
     else {
         $sql7="select * from users where user_name='".$name."'";
