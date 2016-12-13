@@ -43,12 +43,48 @@ div.container {margin-top: 4.5em !important;}
                 die("Connection failed: " . $conn->connect_error);
               }
         if($rowadmin['admin']==1){?>
-        <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
-        
+        <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>  
             
         <?php }?>
         
         <div class="col-md-6">
+            
+            <div id="searchresult" class="style:left">
+        <form class="searchform" action="Search1.php" method="post">
+                    <input  type="search" name="searchstr" id="searchstr" onKeyUp="showResult(this.value)" placeholder="Search user"/>
+                    <button type="submit" id="searchsubmit">Search</button>
+                </form>
+        </div>
+
+<script type="text/javascript">
+function showResult(str) {
+var entered = $("#searchstr").val();
+var res = 'searchstr='+ entered ;
+
+if (entered != '') {
+
+  $.ajax({
+  type: "POST",
+  url: "Search1.php",
+  data: res,
+  cache: false,
+  success: function(result){
+  $("#searchresult").empty();
+  $("#searchresult").append(result);
+  }
+  });
+} else {
+  $("#searchresult").append("<p>No results");
+  $("#searchresult").empty();
+}
+} 
+</script>
+            
+            
+            
+            
+            
+            
             
             <?php              
               
@@ -58,27 +94,21 @@ div.container {margin-top: 4.5em !important;}
             $rowquestions = mysqli_fetch_array($resultquestions);
             $questioncount=$rowquestions['questioncount']/2;
             $page=0;
-            echo "rowquestions :".$rowquestions['questioncount']/2;
-            echo '<div class="container">';
+            //echo "rowquestions :".$rowquestions['questioncount']/2;
+            
             while( $i<$questioncount)
             {
                 $i=$i+1;
-               echo' <ul class="pagination" >
+               echo' <ul class="pagination">
     <li><a href="pagination.php? var='.$i.'">'.$i.'</a></li>    
-  </ul>';                
+  </ul>';
+                
             }
-         echo '</div>';
             $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
             $result = $conn->query($sql);
             
               while($row = mysqli_fetch_array($result))
-                {  $sql1= "select * from users where user_name='".$row['q_asker']."'";
-                  $result1= $conn->query($sql1);
-                  $user = mysqli_fetch_array($result1);
-                  $sql2="select * from avatar where avatar_uid=".$user['user_id'];
-                  $result2= $conn->query($sql2);
-                  $avatar = mysqli_fetch_array($result2);
-                  $path = "http://vtalapaneni.cs518.cs.odu.edu/upload/".$avatar['filename'];
+                {  
                   $sqlans="Select count(*) as anscount from answer where a_id=".$row['q_id'];
                   $resultans = $conn->query($sqlans);
             $rowans = mysqli_fetch_array($resultans);
@@ -99,23 +129,12 @@ div.container {margin-top: 4.5em !important;}
                                 <div class="views" >
                                 
                                 <div class="media-left">
-                                     <img src="'.$path.'" class="media-object" style="width:60px">
+                                    <img src="profilepics/2.jpg" class="media-object" style="width:60px">
                                 </div>
                                 <div class="media-body">
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . html_entity_decode($bbcode->Parse($row['q_title'] )).
-                                    '</a> <br>' . $row['q_asker'] . ' <br> User Score: '.$row['asker_score'].'';
-                                $tags= $row['tags'];
-                                    $newtags=explode("#",$tags);
-                                    $tagcount=count($newtags);
-                  
-                  if($tagcount!=1){
-                                    while ($tagcount!=0)
-                                    {
-                                        $tagcount=$tagcount-1;
-                                        echo '<button style ="margin:10px;height:25px;width:40px;background-color:green;border:none;text-align:center;cursor:pointer;border-radius: 8px;"> <a href ="tags.php" style="color:white">'.$newtags[$tagcount].'</a></button>';
-                                    }
-                  }
-                 echo '</div>
+                                    '</a> <br>' . $row['q_asker'] . ' <br> User Score: '.$row['asker_score'].'
+                                </div>
                                 <hr>
                                 </div>';
                     

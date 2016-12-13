@@ -21,6 +21,7 @@ error_reporting(0);
   <link href="login.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+    <link href="nav2.css" rel="stylesheet">
 </head>
   
     <?php
@@ -47,12 +48,16 @@ div.container {margin-top: 4.5em !important;}
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
               }
-        ?>
-        <div id="searchresult">
-        <form class="searchform" action="Search.php" method="post">
-            <input type="search" name="searchstr" id="searchstr" onKeyUp="showResult(this.value)" placeholder=" Search User"/>
-            <button type="submit" id="searchsubmit">Search</button>
-            </form>
+        if($rowadmin['admin']==1){?>
+        <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
+        
+        <?php }?>
+        
+              <div id="searchresult" class="style:left">
+        <form class="searchform" action="Search1.php" method="post">
+                    <input  type="search" name="searchstr" id="searchstr" onKeyUp="showResult(this.value)" placeholder="Search user"/>
+                    <button type="submit" id="searchsubmit">Search</button>
+                </form>
         </div>
 
 <script type="text/javascript">
@@ -64,7 +69,7 @@ if (entered != '') {
 
   $.ajax({
   type: "POST",
-  url: "Search.php",
+  url: "Search1.php",
   data: res,
   cache: false,
   success: function(result){
@@ -93,13 +98,6 @@ if (entered != '') {
         
               while($row = mysqli_fetch_array($result))
                 {  
-                  $sql1= "select * from users where user_name='".$row['q_asker']."'";
-                  $result1= $conn->query($sql1);
-                  $user = mysqli_fetch_array($result1);
-                  $sql2="select * from avatar where avatar_uid=".$user['user_id'];
-                  $result2= $conn->query($sql2);
-                  $avatar = mysqli_fetch_array($result2);
-                  $path = "http://vtalapaneni.cs518.cs.odu.edu/upload/".$avatar['filename'];
                   echo'<div class="container" >
                     <div class="well" style ="color:green">
                         <div class="Question" >
@@ -107,7 +105,7 @@ if (entered != '') {
                                 <div class="views" >
                                      <div class="media">
                                         <div class="media-left">
-                                          <img src="'.$path.'" class="media-object" style="width:60px">
+                                          <img src="profilepics/2.jpg" class="media-object" style="width:60px">
                                                 </div>
                                                 <div class="media-body">
                                                   <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . $row['q_title'] .'</a> <br>' . $row['q_asker'] . ' User Score: '.$row['asker_score'].'
