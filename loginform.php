@@ -14,9 +14,7 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head> 
     
-<body >
-<!--<form id="login-form"  action="logIn.php" method="post">-->
-  
+<body>
         <div style="margin-top:100px">
 		<div class="row">
 			<div class="col-sm-6 col-md-4 col-md-offset-4">
