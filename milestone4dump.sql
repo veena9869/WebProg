@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Dec 13, 2016 at 03:32 AM
+-- Generation Time: Dec 13, 2016 at 05:00 PM
 -- Server version: 5.5.49-log
 -- PHP Version: 5.6.24
 
@@ -94,17 +94,18 @@ CREATE TABLE IF NOT EXISTS `avatar` (
   `avatarid` int(11) NOT NULL,
   `avatar_uid` int(11) NOT NULL,
   `filename` varchar(200) NOT NULL,
-  `filetype` int(11) NOT NULL
+  `filetype` int(11) NOT NULL,
+  `avataruname` varchar(200) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `avatar`
 --
 
-INSERT INTO `avatar` (`avatarid`, `avatar_uid`, `filename`, `filetype`) VALUES
-(2, 2, '1.jpg', 0),
-(3, 3, '2.jpg', 0),
-(4, 1, 'now image1.jpg', 0);
+INSERT INTO `avatar` (`avatarid`, `avatar_uid`, `filename`, `filetype`, `avataruname`) VALUES
+(2, 2, '1.jpg', 0, ''),
+(3, 3, '2.jpg', 0, ''),
+(4, 1, 'now image1.jpg', 0, '');
 
 -- --------------------------------------------------------
 
@@ -228,31 +229,32 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_pw` varchar(500) NOT NULL,
   `user_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `admin` int(11) NOT NULL,
-  `score` int(11) NOT NULL
+  `score` int(11) NOT NULL,
+  `email` varchar(200) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_pw`, `user_date`, `admin`, `score`) VALUES
-(1, 'admin ', 'cs518pa$$', '2016-11-22 16:46:08', 1, 1),
-(2, 'jbrunelle', 'M0n@rch$', '2016-12-10 02:19:16', 0, 1),
-(3, 'pvenkman', 'imadoctor', '2016-10-26 09:06:38', 0, 0),
-(4, 'rstantz ";', 'INSERT INTO Customer', '2016-10-26 09:07:31', 0, 0),
-(5, 'dbarrett', 'fr1ed3GGS', '2016-10-26 09:08:00', 0, 0),
-(6, 'ltully', '<!--<i>', '2016-10-26 09:08:31', 0, 0),
-(7, 'janine', '--!drop tables;', '2016-10-26 09:09:07', 0, 0),
-(8, 'winston', 'zeddM0r3', '2016-10-26 09:09:29', 0, 0),
-(9, 'gozer', 'd3$truct0R', '2016-10-26 09:09:53', 0, 0),
-(10, 'slimer', 'f33dM3', '2016-10-26 09:10:13', 0, 0),
-(11, 'keymaster', 'n0D@na', '2016-10-26 09:10:45', 0, 0),
-(12, 'gatekeeper', '$l0r', '2016-10-26 09:11:27', 0, 0),
-(13, 'staypuft', 'm@r$hM@ll0w', '2016-10-26 09:11:51', 0, 0),
-(14, 'espengler', 'don''t cross the stre', '2016-10-26 09:12:55', 0, 0),
-(15, 'zuul', '105"; DROP TABLE', '2016-10-26 09:14:01', 0, 0),
-(16, 'monica', 'monica', '2016-11-22 16:48:13', 0, 0),
-(17, 'anusha', 'anusha', '2016-12-10 02:17:59', 0, 0);
+INSERT INTO `users` (`user_id`, `user_name`, `user_pw`, `user_date`, `admin`, `score`, `email`) VALUES
+(1, 'admin ', 'cs518pa$$', '2016-12-13 03:35:55', 1, 1, 'admin@gmail.com'),
+(2, 'jbrunelle', 'M0n@rch$', '2016-12-13 03:36:25', 0, 1, 'jbrunelle@gmail.com'),
+(3, 'pvenkman', 'imadoctor', '2016-12-13 03:36:39', 0, 0, 'pvenkman@yahoo.com'),
+(4, 'rstantz ";', 'INSERT INTO Customer', '2016-12-13 03:36:48', 0, 0, 'stanz@gmail.com'),
+(5, 'dbarrett', 'fr1ed3GGS', '2016-12-13 03:36:58', 0, 0, 'dbarrett@gmail.com'),
+(6, 'ltully', '<!--<i>', '2016-12-13 03:37:07', 0, 0, 'itully@gmail.com'),
+(7, 'janine', '--!drop tables;', '2016-12-13 03:37:17', 0, 0, 'jnanine@yahoo.com'),
+(8, 'winston', 'zeddM0r3', '2016-12-13 03:37:29', 0, 0, 'zed@some.com'),
+(9, 'gozer', 'd3$truct0R', '2016-12-13 03:37:36', 0, 0, 'gozer@gmail.com'),
+(10, 'slimer', 'f33dM3', '2016-12-13 03:37:43', 0, 0, 'slimer@gmail.com'),
+(11, 'keymaster', 'n0D@na', '2016-12-13 03:38:20', 0, 0, 'keymaster@gmail.com'),
+(12, 'gatekeeper', '$l0r', '2016-12-13 03:38:30', 0, 0, 'gatekeeper@yahoo.com'),
+(13, 'staypuft', 'm@r$hM@ll0w', '2016-12-13 03:38:40', 0, 0, 'stay@yahoo.com'),
+(14, 'espengler', 'don''t cross the stre', '2016-12-13 03:38:53', 0, 0, 'espengler@gmail.com'),
+(15, 'zuul', '105"; DROP TABLE', '2016-12-13 03:39:00', 0, 0, 'zuul@yahoo.com'),
+(16, 'monica', 'monica', '2016-12-13 03:39:08', 0, 0, 'monica@yahoo.com'),
+(17, 'anusha', 'anusha', '2016-12-13 03:39:18', 0, 0, 'anusha@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -310,7 +312,8 @@ ALTER TABLE `type`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
