@@ -2,7 +2,15 @@
 	session_start();
 
 	include_once 'Db_Config.php';
+    include_once 'recaptchalib.php';
 
+$secret="6LdYeg4UAAAAALKNc97PtYhTYYCx_jJWlvODaw1T";
+$response=$_POST["g-recaptcha-response"];
+$verify=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
+$captcha_success=json_decode($verify);
+
+if ($captcha_success->success==true) {
+    
 	$conn = new mysqli($servername, $username, $password, $dbname);
 
     if ($conn->connect_error) 
@@ -10,13 +18,12 @@
 		die("Connection failed: " . $conn->connect_error);
 	} 
 
-	
-
     $sql = "SELECT user_name FROM users";
     $result = $conn->query($sql);
     $flag = 0;
             
-
+if($_POST["register-submit"])
+{
 	if ($result -> num_rows > 0)
 	{
 		while($row = $result -> fetch_assoc())
@@ -29,10 +36,20 @@
 			}
 		}
 	}
+}
 	else
 	{
 		echo "0 results";
 	}
+}
+    else if ($captcha_success->success==false) {      
+    echo '
+    <script>
+    alert("You forgot to check the Captcha");
+    window.location.href="register.php";
+    </script>
+    ';
+ }
    
     if ($flag == 0)
 	{
