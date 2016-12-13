@@ -104,7 +104,7 @@ $email = $git['email'];
         $sql7="select * from users where user_name='".$usrname."'";
     $usrdetails=$conn->query($sql7);
     
-    if($usrdetails->num_rows==1)
+    if(count($usrdetails)==1)
     {
         
         foreach ($usrdetails as $key => $value) {
