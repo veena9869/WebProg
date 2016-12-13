@@ -14,14 +14,19 @@
   <script src="js/bootstrap.min.js"></script>
 </head>
     
-<?php
-    include_once 'nav.php';?>
-<style>
-div.container {margin-top: 10em !important;}
-</style> 
     
 <body>
-
+<div class="container">
+  <div class="jumbotron">
+    <h1>Thrones Realm</h1>
+    <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
+    <div class="container">
+      <a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>
+      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
+      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
+        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
+        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
+        <a href="help.php"><button type="button" class="btn btn-primary">Help</button></a>
         <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -36,7 +41,8 @@ div.container {margin-top: 10em !important;}
         <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
         
         <?php }?>
-    
+      </div>
+   
 
     <?php
             
@@ -45,7 +51,7 @@ div.container {margin-top: 10em !important;}
             ini_set('display_startup_errors',1);
             error_reporting(E_ALL);
             
-            //chmod("C:/MAMP/htdocs/profilepics/", 777);
+            chmod("'http://vtalapaneni.cs518.cs.odu.edu/upload/", 777);
             session_start();
             
             $requser = $_GET['var'];
@@ -71,15 +77,14 @@ div.container {margin-top: 10em !important;}
         
         $userid =$rowuser['user_id'];
             $sqlavatar="select * from avatar where avatar_uid='$userid'";
-				echo $userid;
+				echo $_SESSION['userID'];
 					$resultavatar = mysqli_query($conn, $sqlavatar);
 					$rowavatar = mysqli_fetch_assoc($resultavatar);
-            //echo $rowavatar['filename'];
+            echo $rowavatar['filename'];
 					 if($rowavatar['filetype'] == '0') {
 						$imgname = $rowavatar['filename'];
-                         $path="http://vtalapaneni.cs518.cs.odu.edu/upload/".$imgname;
-                         echo $path;
-						 echo '<div><img src="'.$path.'" height="230px" width="300px"></div>';
+                         $path="'http://vtalapaneni.cs518.cs.odu.edu/upload/".$imgname;
+						 echo '<img src="'.$path.'"style="width:304px;height:228px;">';
 						
 					}
 					
@@ -109,9 +114,6 @@ div.container {margin-top: 10em !important;}
                 }
            
             ?>
-    
+        </div>
 </body>
-    
- <?php
-    include_once 'footer.php';?>
 </html>

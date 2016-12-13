@@ -1,9 +1,10 @@
 <?php
 session_start();
 include_once  'Db_Config.php';
+
 $user = $_SESSION['userID'];
-$newusrname=$_SESSION['username'];
-$target_dir = "http://vtalapaneni.cs518.cs.odu.edu/upload/";
+
+$target_dir = "'http://vtalapaneni.cs518.cs.odu.edu/upload/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -45,17 +46,17 @@ if ($uploadOk == 0) {
         
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.".$_SESSION['username']."shdg";        
         $file= basename( $_FILES["fileToUpload"]["name"]);
-       // $sqlavatar = "select max(avatarid) as id from avatar";
-        //$resultavatar = $conn->query($sqlavatar);        
-             //   $rowavatar=$resultavatar->fetch_assoc();
-       // $avatarid = $rowavatar['id']+1;
+        $sqlavatar = "select max(avatarid) as id from avatar";
+        $resultavatar = $conn->query($sqlavatar);        
+                $rowavatar=$resultavatar->fetch_assoc();
+        $avatarid = $rowavatar['id']+1;
         $sqluser="select user_id from users where user_name='".$_SESSION['username']."'";
         $resultuser = $conn->query($sqluser);        
-                $rowuser=$resultuser->fetch_assoc();
+        $rowuser=$resultuser->fetch_assoc();
         echo $rowuser['user_id'];
         $userid =$rowuser['user_id'];
         $sql1="select * from avatar where avatar_uid=".$userid;
-        $sql2 = "INSERT INTO avatar (avatar_uid,filename,filetype) VALUES ($userid','$file',0)";
+        $sql2 = "INSERT INTO avatar (avatarid,avatar_uid,filename,filetype) VALUES ('$avatarid','$userid','$file',0)";
         $sql3 = "update avatar set filename='$file' where avatar_uid='$userid'";
         //$check = mysqli_query($conn, $sql1);
         $check = $conn->query($sql1);
@@ -71,4 +72,7 @@ if ($uploadOk == 0) {
         echo "error:Sorry, there was an error uploading your file.";
     }
 }
+
+
+
 ?>

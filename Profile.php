@@ -12,27 +12,54 @@
   <link href="login.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+    
 </head>
     
-<?php
-    include_once 'nav.php';?>
-<style>
-div.container {margin-top: 6em !important;}
-</style> 
     
-    <body>
+<body>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Thrones Realm</h1>
+    <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
+  
+    <div class="container">
+      <a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>
+      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
+      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
+        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
+        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
+        <a href="help.php"><button type="button" class="btn btn-primary">Help</button></a>
+        <?php 
+        include_once 'Db_Config.php';
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $sqladmin = 'select admin from users where user_name="'.$_SESSION['username'].'"';
+        $resultadmin = $conn->query($sqladmin);
+        $rowadmin = mysqli_fetch_array($resultadmin);
         
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+              }
+        if($rowadmin['admin']==1){?>
+        <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
+        
+        <?php }?>
+      </div>
+   </div>
+</div>
 
         <div class="col-md-6">
     <?php
+            
+            
             ini_set('display_errors',1);
             ini_set('display_startup_errors',1);
             error_reporting(E_ALL);
             
-            //chmod("C:/MAMP/htdocs/profilepics/", 777);
-         //   session_start();
+            chmod("upload/", 777);
+            session_start();
             
-            $requser = $_SESSION['username'];
+            $requser = $_GET['var'];
+
         if ($conn->connect_error) 
 	       {
 		      die("Connection failed: " . $conn->connect_error);
@@ -41,7 +68,7 @@ div.container {margin-top: 6em !important;}
         if($_SESSION['logged_in'])
         {
             
-            echo 'Welcome ' . $_SESSION['username'] .', <br>';
+            echo 'Welcome ' . $_SESSION['username'] .', <a href="Logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
             
              echo "You are now viewing " .$requser."'s profile";
             
@@ -52,15 +79,17 @@ div.container {margin-top: 6em !important;}
         
         $userid =$rowuser['user_id'];
             $sqlavatar="select * from avatar where avatar_uid='$userid'";
-				//echo $_SESSION['userID'];
+				echo $_SESSION['userID'];
 					$resultavatar = mysqli_query($conn, $sqlavatar);
 					$rowavatar = mysqli_fetch_assoc($resultavatar);
-           // echo $rowavatar['filename'];
+            echo $rowavatar['filename'];
+            
 					 if($rowavatar['filetype'] == '0') {
 						$imgname = $rowavatar['filename'];
-                         //'http://vtalapaneni.cs518.cs.odu.edu/loginform.php'
-                         $path="http://vtalapaneni.cs518.cs.odu.edu/upload/".$imgname;
-						 echo '<div><img src="'.$path.'" height="230px" width="300px"></div>';
+                         $path="upload/".$imgname;
+                         echo $path;
+                         echo '<div><img src="'.$path.'" height="230px" width="300px"></div>';
+						// echo '<img src="'.$path.'"style="width:304px;height:228px;">';
 						
 					}
 					
@@ -76,6 +105,7 @@ div.container {margin-top: 6em !important;}
             $sql = 'SELECT * FROM question WHERE q_asker = "' . $requser . '"';
             
               $result = $conn->query($sql);
+
               while($row = mysqli_fetch_array($result))
                 {  
                   echo'<div class="container" >
@@ -95,7 +125,4 @@ div.container {margin-top: 6em !important;}
             ?>
         </div>
 </body>
-
-    <?php
-    include_once 'footer.php';?>  
 </html>
