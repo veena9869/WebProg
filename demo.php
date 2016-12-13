@@ -77,10 +77,10 @@ $email = $git['email'];
     echo "email is".$email;
     echo "username is".$usrname;
     
-    $sql1='select * from users where user_name="'.$usrname.'"';
+    $sql1='select * from users';
     $usr=conn->query($sql1);
     
-    echo $sql1;
+    //echo $sql1;
     //echo $usr;
     
    /* if($usr->num_rows==0)
