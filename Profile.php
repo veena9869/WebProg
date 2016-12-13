@@ -55,7 +55,7 @@
             ini_set('display_startup_errors',1);
             error_reporting(E_ALL);
             
-            chmod("'http://vtalapaneni.cs518.cs.odu.edu/upload/", 777);
+            //chmod("'http://vtalapaneni.cs518.cs.odu.edu/upload/", 777);
             session_start();
             
             $requser = $_GET['var'];
