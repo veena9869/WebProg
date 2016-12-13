@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Dec 13, 2016 at 05:00 PM
+-- Generation Time: Dec 13, 2016 at 06:46 PM
 -- Server version: 5.5.49-log
--- PHP Version: 5.6.24
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -110,45 +110,6 @@ INSERT INTO `avatar` (`avatarid`, `avatar_uid`, `filename`, `filetype`, `avataru
 -- --------------------------------------------------------
 
 --
--- Table structure for table `qa_blobs`
---
-
-DROP TABLE IF EXISTS `qa_blobs`;
-CREATE TABLE IF NOT EXISTS `qa_blobs` (
-  `blobid` bigint(20) unsigned NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  `userid` int(10) unsigned NOT NULL,
-  `created` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `qa_blobs`
---
-
-INSERT INTO `qa_blobs` (`blobid`, `filename`, `userid`, `created`) VALUES
-(0, '2.jpg', 24, '0000-00-00 00:00:00'),
-(23, '1.jpg', 23, '0000-00-00 00:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `qa_users`
---
-
-DROP TABLE IF EXISTS `qa_users`;
-CREATE TABLE IF NOT EXISTS `qa_users` (
-  `userid` int(10) unsigned NOT NULL,
-  `created` datetime NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `avatarblobid` bigint(20) unsigned NOT NULL,
-  `avatarwidth` smallint(5) unsigned NOT NULL,
-  `avatarheight` smallint(5) unsigned NOT NULL,
-  `loggedin` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `question`
 --
 
@@ -230,31 +191,32 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `admin` int(11) NOT NULL,
   `score` int(11) NOT NULL,
-  `email` varchar(200) NOT NULL
+  `email` varchar(200) NOT NULL,
+  `tags` varchar(1000) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_pw`, `user_date`, `admin`, `score`, `email`) VALUES
-(1, 'admin ', 'cs518pa$$', '2016-12-13 03:35:55', 1, 1, 'admin@gmail.com'),
-(2, 'jbrunelle', 'M0n@rch$', '2016-12-13 03:36:25', 0, 1, 'jbrunelle@gmail.com'),
-(3, 'pvenkman', 'imadoctor', '2016-12-13 03:36:39', 0, 0, 'pvenkman@yahoo.com'),
-(4, 'rstantz ";', 'INSERT INTO Customer', '2016-12-13 03:36:48', 0, 0, 'stanz@gmail.com'),
-(5, 'dbarrett', 'fr1ed3GGS', '2016-12-13 03:36:58', 0, 0, 'dbarrett@gmail.com'),
-(6, 'ltully', '<!--<i>', '2016-12-13 03:37:07', 0, 0, 'itully@gmail.com'),
-(7, 'janine', '--!drop tables;', '2016-12-13 03:37:17', 0, 0, 'jnanine@yahoo.com'),
-(8, 'winston', 'zeddM0r3', '2016-12-13 03:37:29', 0, 0, 'zed@some.com'),
-(9, 'gozer', 'd3$truct0R', '2016-12-13 03:37:36', 0, 0, 'gozer@gmail.com'),
-(10, 'slimer', 'f33dM3', '2016-12-13 03:37:43', 0, 0, 'slimer@gmail.com'),
-(11, 'keymaster', 'n0D@na', '2016-12-13 03:38:20', 0, 0, 'keymaster@gmail.com'),
-(12, 'gatekeeper', '$l0r', '2016-12-13 03:38:30', 0, 0, 'gatekeeper@yahoo.com'),
-(13, 'staypuft', 'm@r$hM@ll0w', '2016-12-13 03:38:40', 0, 0, 'stay@yahoo.com'),
-(14, 'espengler', 'don''t cross the stre', '2016-12-13 03:38:53', 0, 0, 'espengler@gmail.com'),
-(15, 'zuul', '105"; DROP TABLE', '2016-12-13 03:39:00', 0, 0, 'zuul@yahoo.com'),
-(16, 'monica', 'monica', '2016-12-13 03:39:08', 0, 0, 'monica@yahoo.com'),
-(17, 'anusha', 'anusha', '2016-12-13 03:39:18', 0, 0, 'anusha@gmail.com');
+INSERT INTO `users` (`user_id`, `user_name`, `user_pw`, `user_date`, `admin`, `score`, `email`, `tags`) VALUES
+(1, 'admin ', 'cs518pa$$', '2016-12-13 03:35:55', 1, 1, 'admin@gmail.com', ''),
+(2, 'jbrunelle', 'M0n@rch$', '2016-12-13 03:36:25', 0, 1, 'jbrunelle@gmail.com', ''),
+(3, 'pvenkman', 'imadoctor', '2016-12-13 03:36:39', 0, 0, 'pvenkman@yahoo.com', ''),
+(4, 'rstantz ";', 'INSERT INTO Customer', '2016-12-13 03:36:48', 0, 0, 'stanz@gmail.com', ''),
+(5, 'dbarrett', 'fr1ed3GGS', '2016-12-13 03:36:58', 0, 0, 'dbarrett@gmail.com', ''),
+(6, 'ltully', '<!--<i>', '2016-12-13 03:37:07', 0, 0, 'itully@gmail.com', ''),
+(7, 'janine', '--!drop tables;', '2016-12-13 03:37:17', 0, 0, 'jnanine@yahoo.com', ''),
+(8, 'winston', 'zeddM0r3', '2016-12-13 03:37:29', 0, 0, 'zed@some.com', ''),
+(9, 'gozer', 'd3$truct0R', '2016-12-13 03:37:36', 0, 0, 'gozer@gmail.com', ''),
+(10, 'slimer', 'f33dM3', '2016-12-13 03:37:43', 0, 0, 'slimer@gmail.com', ''),
+(11, 'keymaster', 'n0D@na', '2016-12-13 03:38:20', 0, 0, 'keymaster@gmail.com', ''),
+(12, 'gatekeeper', '$l0r', '2016-12-13 03:38:30', 0, 0, 'gatekeeper@yahoo.com', ''),
+(13, 'staypuft', 'm@r$hM@ll0w', '2016-12-13 03:38:40', 0, 0, 'stay@yahoo.com', ''),
+(14, 'espengler', 'don''t cross the stre', '2016-12-13 03:38:53', 0, 0, 'espengler@gmail.com', ''),
+(15, 'zuul', '105"; DROP TABLE', '2016-12-13 03:39:00', 0, 0, 'zuul@yahoo.com', ''),
+(16, 'monica', 'monica', '2016-12-13 03:39:08', 0, 0, 'monica@yahoo.com', ''),
+(17, 'anusha', 'anusha', '2016-12-13 03:39:18', 0, 0, 'anusha@gmail.com', '');
 
 --
 -- Indexes for dumped tables
@@ -277,18 +239,6 @@ ALTER TABLE `answer_votes`
 --
 ALTER TABLE `avatar`
   ADD PRIMARY KEY (`avatarid`);
-
---
--- Indexes for table `qa_blobs`
---
-ALTER TABLE `qa_blobs`
-  ADD PRIMARY KEY (`blobid`);
-
---
--- Indexes for table `qa_users`
---
-ALTER TABLE `qa_users`
-  ADD PRIMARY KEY (`userid`);
 
 --
 -- Indexes for table `question`
