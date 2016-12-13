@@ -2,7 +2,7 @@
 	session_start();
 
 	include_once 'Db_Config.php';
-    include_once 'recaptchalib.php';
+    
 
 $secret="6LdYeg4UAAAAALKNc97PtYhTYYCx_jJWlvODaw1T";
 $response=$_POST["g-recaptcha-response"];
