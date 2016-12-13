@@ -77,10 +77,10 @@ $email = $git['email'];
     echo "email is".$email;
     echo "username is".$username;
     
-    $sql1="select * from users where user_name='".$name."' or email='".$email."'";
+    $sql1="select * from users where user_name='".$usrname."' or email='".$email."'";
     $usr=conn->query($sql1);
     
-    if($usr->num_rows==0)
+   /* if($usr->num_rows==0)
     {
         
         $sql3 = "INSERT INTO users (user_name,user_pw,email)
@@ -106,7 +106,7 @@ $email = $git['email'];
 
    }
    }
-}
+}*/
 } else {
   $url = "https://github.com/login/oauth/authorize?client_id=$clientId&redirect_uri=$redirect_url&scope=user";
   header("Location: $url");
