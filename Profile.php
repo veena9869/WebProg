@@ -59,7 +59,7 @@ div.container {margin-top: 6em !important;}
            // echo $rowavatar['filename'];
 					 if($rowavatar['filetype'] == '0') {
 						$imgname = $rowavatar['filename'];
-                         $path="http://vtalapaneni.cs518.cs.odu.edu/upload/".$imgname;
+                         $path="upload/".$imgname;
 						 echo '<div><img src="'.$path.'" height="230px" width="300px"></div>';
 						
 					}
