@@ -77,23 +77,23 @@ $email = $git['email'];
     echo "email is".$email;
     echo "username is".$username;
     
-   /* $sql1="select * from users where user_name='".$name."' or email='".$email."'";
+    $sql1="select * from users where user_name='".$name."' or email='".$email."'";
     $usr=conn->query($sql1);
     
     if($usr->num_rows==0)
     {
         
         $sql3 = "INSERT INTO users (user_name,user_pw,email)
-			VALUES ('$name','$name',  '$email')";
+			VALUES ('$usrname','$usrname',  '$usrname')";
         $res=$conn->query($sql3);
         
-        $sql4="select user_name,user_id from users where user_name='".$name."'";
+        $sql4="select user_name,user_id from users where user_name='".$usrname."'";
         $res1=$conn->query($sql4);
     
          
- }
+ }   
     else {
-        $sql7="select * from users where user_name='".$name."'";
+        $sql7="select * from users where user_name='".$usrname."'";
     $usrdetails=conn->query($sql7);
     
     if($usrdetails->num_rows==1)
@@ -102,10 +102,11 @@ $email = $git['email'];
         foreach ($usrdetails as $key => $value) {
      $_SESSION['username'] = $value['user_name'];
      $_SESSION['userID'] = $value['user_id'];
+            
 
    }
    }
-}*/
+}
 } else {
   $url = "https://github.com/login/oauth/authorize?client_id=$clientId&redirect_uri=$redirect_url&scope=user";
   header("Location: $url");
