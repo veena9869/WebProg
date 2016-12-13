@@ -73,9 +73,9 @@ $email = $git['email'];
     
     $usrname=ltrim($name,'$');
 
-    echo $name;
-    echo $email;
-    echo $username;
+    echo "name is" .$name;
+    echo "email is".$email;
+    echo "username is".$username;
     
    /* $sql1="select * from users where user_name='".$name."' or email='".$email."'";
     $usr=conn->query($sql1);
