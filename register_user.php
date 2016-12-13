@@ -37,11 +37,11 @@
     if ($flag == 0)
 	{
 		echo "Username is unique<br>";
-		$sql1 = "INSERT INTO users (user_name,user_pw)
-			 VALUES ('$_POST[user_name]','$_POST[user_pw]')";
+		$sql1 = "INSERT INTO users (user_name,user_pw,email)
+			 VALUES ('$_POST[user_name]','$_POST[user_pw]','$_POST[email]')";
 		if ($conn->query($sql1) === TRUE)
 		{
-            $sql2 = "SELECT * FROM users where `user_name` = '".$_POST['user_name']."'and `user_pw` = '".$_POST['user_pw']."'";
+            $sql2 = "SELECT * FROM users where `user_name` = '".$_POST['user_name']."'and `user_pw` = '".$_POST['user_pw']."'and `email` = '".$_POST['email']."'";
 
 	$result2 = $conn->query($sql2);
               
@@ -51,6 +51,7 @@
 		          {
 					$_SESSION['username'] = $_POST["user_name"];
 					$_SESSION['userID'] = $row["user_id"];
+                      $_SESSION['email'] = $row["email"]; 
 					$_SESSION['logged_in'] = 1;
 					$_SESSION['vote'] = array();
 					$_SESSION['Qvote'] = array();
