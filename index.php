@@ -47,10 +47,7 @@ div.container {margin-top: 4.5em !important;}
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
               }
-        if($rowadmin['admin']==1){?>
-        <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
-        
-        <?php }?>
+        ?>
         <div id="searchresult"></div>
 
 <script type="text/javascript">
