@@ -54,7 +54,7 @@ div.container {margin-top: 4.5em !important;}
         <?php }?>
         
               <div id="searchresult" class="style:left">
-        <form class="searchform" action="Search1.php" method="post">
+        <form class="searchform" action="Search.php" method="post">
                     <input  type="search" name="searchstr" id="searchstr" onKeyUp="showResult(this.value)" placeholder="Search user"/>
                     <button type="submit" id="searchsubmit">Search</button>
                 </form>
@@ -69,7 +69,7 @@ if (entered != '') {
 
   $.ajax({
   type: "POST",
-  url: "Search1.php",
+  url: "Search.php",
   data: res,
   cache: false,
   success: function(result){
