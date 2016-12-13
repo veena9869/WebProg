@@ -33,7 +33,6 @@ div.container {margin-top: 6em !important;}
             session_start();
             
             $requser = $_SESSION['username'];
-
         if ($conn->connect_error) 
 	       {
 		      die("Connection failed: " . $conn->connect_error);
@@ -59,7 +58,8 @@ div.container {margin-top: 6em !important;}
            // echo $rowavatar['filename'];
 					 if($rowavatar['filetype'] == '0') {
 						$imgname = $rowavatar['filename'];
-                         $path="upload/".$imgname;
+                         //'http://vtalapaneni.cs518.cs.odu.edu/loginform.php'
+                         $path="http://vtalapaneni.cs518.cs.odu.edu/upload/".$imgname;
 						 echo '<div><img src="'.$path.'" height="230px" width="300px"></div>';
 						
 					}
@@ -76,7 +76,6 @@ div.container {margin-top: 6em !important;}
             $sql = 'SELECT * FROM question WHERE q_asker = "' . $requser . '"';
             
               $result = $conn->query($sql);
-
               while($row = mysqli_fetch_array($result))
                 {  
                   echo'<div class="container" >

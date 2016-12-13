@@ -1,9 +1,7 @@
 <?php
 session_start();
 include_once  'Db_Config.php';
-
 $user = $_SESSION['userID'];
-
 $target_dir = "http://vtalapaneni.cs518.cs.odu.edu/upload/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -72,7 +70,4 @@ if ($uploadOk == 0) {
         echo "error:Sorry, there was an error uploading your file.";
     }
 }
-
-
-
 ?>
