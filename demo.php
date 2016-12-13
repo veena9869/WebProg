@@ -86,23 +86,23 @@ $email = $conn -> $git['email'];
         $res1=$conn->query($sql4);
     
          $imgurl = $git['avatar_url'];
- $imagename= $git['id'];
+
     
 
-         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/upload/'.$imagename.'.jpg')){continue;}
- $image = getimg($imgurl);
- file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/'.$imagename.'.jpg',$image);
+         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/upload/'.$imgurl.'.jpg')){continue;}
+ 
+ file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/'.$name.'.jpg',$image);
         
         if($res1->num_rows==1)
         {
             
         foreach ($res1 as $key => $value) {
             
-            $_SESSION['username'] = stripslashes($value['user_name']);
+            $_SESSION['username'] = $value['user_name'];
    $_SESSION['userID'] = $value['user_id'];
-   $imgname = $conn -> quote($imagename.'.jpg');
+  
             
-            $sql5='INSERT into avatar (`avatar_uid`,`filename`,`filetype`) VALUES ('.$_SESSION['userID'].',"'.$imgname.'", 0);';
+            $sql5='INSERT into avatar (`avatar_uid`,`filename`,`filetype`) VALUES ('.$_SESSION['userID'].',"'.$imgurl.'", 0);';
       
     $conn->query($sql5);
             
@@ -122,7 +122,7 @@ $email = $conn -> $git['email'];
     {
         
         foreach ($usrdetails as $key => $value) {
-     $_SESSION['username'] = stripslashes($value['user_name']);
+     $_SESSION['username'] = $value['user_name'];
      $_SESSION['userID'] = $value['user_id'];
 
    }
