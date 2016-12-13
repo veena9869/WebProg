@@ -82,7 +82,7 @@ error_reporting(0);
       </div>';
          echo '<a href="Profile.php?var='.$_SESSION['username'].'">Profile</a>';  
             
-           //  echo '<a href="main.php?var='.$_SESSION['username'].'">Actual Profile</a>';
+             echo '<a href="main.php?var='.$_SESSION['username'].'">Actual Profile</a>';
             
         }        
         ?>

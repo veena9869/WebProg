@@ -4,13 +4,13 @@ e.preventDefault();
 $("#message").empty();
 $('#loading').show();
 $.ajax({
-url: "file.php", // Url to which the request is send
-type: "POST",             // Type of request to be send, called as method
-data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-contentType: false,       // The content type used when sending data to the server.
-cache: false,             // To unable request pages to be cached
-processData:false,        // To send DOMDocument or non processed data file it is set to false
-success: function(data)   // A function to be called if request succeeds
+url: "file.php", 
+type: "POST",             
+data: new FormData(this), 
+contentType: false,       
+cache: false,            
+processData:false,       
+success: function(data)   
 {
 $('#loading').hide();
 $("#message").html(data);
@@ -19,10 +19,10 @@ $("#message").html(data);
 }));
     
     
-    // Function to preview image after validation
+   
 $(function() {
 $("#file").change(function() {
-$("#message").empty(); // To remove the previous error message
+$("#message").empty();
 var file = this.files[0];
 var imagefile = file.type;
 var match= ["image/jpeg","image/png","image/jpg"];
