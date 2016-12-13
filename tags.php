@@ -1,12 +1,10 @@
 <?php
-$tag=$_GET['var'];
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
 error_reporting(0);
-
+$tag=$_GET['var'];
 require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
 $bbcode = new BBCode;
 ?>
@@ -21,26 +19,19 @@ $bbcode = new BBCode;
   <meta name="viewport" content="width=device-width,intitail-scale=1">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-  <link href="main.css" rel="stylesheet">
   <link href="login.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 </head>
   
+<?php
+    include_once 'nav.php';?>
+<style>
+div.container {margin-top: 4.5em !important;}
+</style> 
+    
+    
 <body>
-<div class="container">
-  <div class="jumbotron">
-    <h1>Thrones Realm</h1>
-    <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
-  
-    <div class="container"><?php
-         if(!$_SESSION['logged_in']){
-      echo'<a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>';
-        }?>
-      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
-      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
-        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
-        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
         <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -48,32 +39,15 @@ $bbcode = new BBCode;
         $resultadmin = $conn->query($sqladmin);
         $rowadmin = mysqli_fetch_array($resultadmin);
         
-        
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
               }
         if($rowadmin['admin']==1){?>
         <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
         
+            
         <?php }?>
-        <button type="button" class="btn btn-warning">Votes</button> <br><br> 
         
-        <?php
-        if($_SESSION['logged_in'])
-        {
-            echo 'Welcome ' . $_SESSION['username'] .', <a href="Logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
-        
-        echo '<div class="pull-right">
-        
-      </div>';
-        }
-        ?>
-        
-      </div>
-      </div>
-   </div>
-
-
         <div class="col-md-6">
             
             <?php              
@@ -84,19 +58,28 @@ $bbcode = new BBCode;
             $rowquestions = mysqli_fetch_array($resultquestions);
             $questioncount=$rowquestions['questioncount']/2;
             $page=0;
+            echo "rowquestions :".$rowquestions['questioncount']/2;
+            echo '<div class="container">';
+            $tag = 
             while( $i<$questioncount)
             {
                 $i=$i+1;
-               echo' <ul class="pagination">
+               echo' <ul class="pagination" >
     <li><a href="pagination.php? var='.$i.'">'.$i.'</a></li>    
-  </ul>';
-                
+  </ul>';                
             }
+         echo '</div>';
             $sql = 'SELECT *  FROM question where tags like "%'.$tag.'%" ORDER BY q_value DESC LIMIT '.$page.',2';
             $result = $conn->query($sql);
             
               while($row = mysqli_fetch_array($result))
-                {  
+                {  $sql1= "select * from users where user_name='".$row['q_asker']."'";
+                  $result1= $conn->query($sql1);
+                  $user = mysqli_fetch_array($result1);
+                  $sql2="select * from avatar where avatar_uid=".$user['user_id'];
+                  $result2= $conn->query($sql2);
+                  $avatar = mysqli_fetch_array($result2);
+                  $path = "http://vtalapaneni.cs518.cs.odu.edu/upload/".$avatar['filename'];
                   $sqlans="Select count(*) as anscount from answer where a_id=".$row['q_id'];
                   $resultans = $conn->query($sqlans);
             $rowans = mysqli_fetch_array($resultans);
@@ -115,9 +98,14 @@ $bbcode = new BBCode;
                         <div class="Question" >
                             <div class="votes" >
                                 <div class="views" >
+                                
+                                <div class="media-left">
+                                     <img src="'.$path.'" class="media-object" style="width:60px">
+                                </div>
+                                <div class="media-body">
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . html_entity_decode($bbcode->Parse($row['q_title'] )).
-                                    '</a> <br>' . $row['q_asker'] . ' Score:'.html_entity_decode($bbcode->Parse($row['q_value'])) . '<br><br>';
-                                    $tags= $row['tags'];
+                                    '</a> <br>' . $row['q_asker'] . ' <br> User Score: '.$row['asker_score'].'';
+                                $tags= $row['tags'];
                                     $newtags=explode("#",$tags);
                                     $tagcount=count($newtags);
                   
@@ -125,11 +113,14 @@ $bbcode = new BBCode;
                                     while ($tagcount!=0)
                                     {
                                         $tagcount=$tagcount-1;
-                                        echo '<button style ="margin:10px;height:25px;width:40px;background-color:green;border:none;text-align:center;cursor:pointer;border-radius: 8px;"> <a href ="tags.php? var='.$newtags[$tagcount].'" style="color:white">'.$newtags[$tagcount].'</a></button>';
+                                        echo '<button style ="margin:10px;height:25px;width:40px;background-color:green;border:none;text-align:center;cursor:pointer;border-radius: 8px;"> <a href ="tags.php" style="color:white">'.$newtags[$tagcount].'</a></button>';
                                     }
                   }
-                            echo    '</div>';
-                  $ip=0;
+                 echo '</div>
+                                <hr>
+                                </div>';
+                    
+                                $ip=0;
                                 while( $ip<$anscount){
                                     $ip=$ip+1;
                                     echo' <ul class="pagination">
@@ -145,4 +136,6 @@ $bbcode = new BBCode;
             ?>
         </div>
 </body>
+    <?php
+    include_once 'footer.php';?>  
 </html>
