@@ -112,8 +112,9 @@ $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
                                     while ($tagcount!=0)
                                     {
                                         $tagcount=$tagcount-1;
-                                        echo '<button style ="margin:10px;height:25px;width:40px;background-color:green;border:none;text-align:center;cursor:pointer;border-radius: 8px;"> <a href ="tags.php?var='.$newtags[$tagcount].'" style="color:white">'.$newtags[$tagcount].'</a></button>';
+                                        echo '<button style ="margin:10px;height:25px;width:40px;background-color:green;border:none;text-align:center;cursor:pointer;border-radius: 8px;"> <a href ="tags.php? var='.$newtags[$tagcount].'" style="color:white">'.$newtags[$tagcount].'</a></button>';
                                     }
+                                        
                   }
                  echo '</div>
                                 <hr>

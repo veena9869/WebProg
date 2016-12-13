@@ -1,10 +1,12 @@
 <?php
+$tag=$_GET['var'];
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
 error_reporting(0);
-$tag=$_GET['var'];
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
 $bbcode = new BBCode;
 ?>
@@ -19,19 +21,21 @@ $bbcode = new BBCode;
   <meta name="viewport" content="width=device-width,intitail-scale=1">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="main.css" rel="stylesheet">
   <link href="login.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 </head>
   
-<?php
+     <?php
     include_once 'nav.php';?>
 <style>
 div.container {margin-top: 4.5em !important;}
-</style> 
     
+</style>
     
 <body>
+
         <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -39,14 +43,12 @@ div.container {margin-top: 4.5em !important;}
         $resultadmin = $conn->query($sqladmin);
         $rowadmin = mysqli_fetch_array($resultadmin);
         
+        
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
               }
-        if($rowadmin['admin']==1){?>
-        <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
-        
-            
-        <?php }?>
+       ?>
+        <button type="button" class="btn btn-warning">Votes</button> <br><br> 
         
         <div class="col-md-6">
             
@@ -58,28 +60,12 @@ div.container {margin-top: 4.5em !important;}
             $rowquestions = mysqli_fetch_array($resultquestions);
             $questioncount=$rowquestions['questioncount']/2;
             $page=0;
-            echo "rowquestions :".$rowquestions['questioncount']/2;
-            echo '<div class="container">';
-            $tag = 
-            while( $i<$questioncount)
-            {
-                $i=$i+1;
-               echo' <ul class="pagination" >
-    <li><a href="pagination.php? var='.$i.'">'.$i.'</a></li>    
-  </ul>';                
-            }
-         echo '</div>';
-            $sql = 'SELECT *  FROM question where tags like "%'.$tag.'%" ORDER BY q_value DESC LIMIT '.$page.',2';
+            
+            $sql = 'SELECT *  FROM question where tags like "%'.$tag.'%" ORDER BY q_value DESC ';
             $result = $conn->query($sql);
             
               while($row = mysqli_fetch_array($result))
-                {  $sql1= "select * from users where user_name='".$row['q_asker']."'";
-                  $result1= $conn->query($sql1);
-                  $user = mysqli_fetch_array($result1);
-                  $sql2="select * from avatar where avatar_uid=".$user['user_id'];
-                  $result2= $conn->query($sql2);
-                  $avatar = mysqli_fetch_array($result2);
-                  $path = "http://vtalapaneni.cs518.cs.odu.edu/upload/".$avatar['filename'];
+                {  
                   $sqlans="Select count(*) as anscount from answer where a_id=".$row['q_id'];
                   $resultans = $conn->query($sqlans);
             $rowans = mysqli_fetch_array($resultans);
@@ -98,14 +84,9 @@ div.container {margin-top: 4.5em !important;}
                         <div class="Question" >
                             <div class="votes" >
                                 <div class="views" >
-                                
-                                <div class="media-left">
-                                     <img src="'.$path.'" class="media-object" style="width:60px">
-                                </div>
-                                <div class="media-body">
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . html_entity_decode($bbcode->Parse($row['q_title'] )).
-                                    '</a> <br>' . $row['q_asker'] . ' <br> User Score: '.$row['asker_score'].'';
-                                $tags= $row['tags'];
+                                    '</a> <br>' . $row['q_asker'] . ' Score:'.html_entity_decode($bbcode->Parse($row['q_value'])) . '<br><br>';
+                                    $tags= $row['tags'];
                                     $newtags=explode("#",$tags);
                                     $tagcount=count($newtags);
                   
@@ -113,14 +94,11 @@ div.container {margin-top: 4.5em !important;}
                                     while ($tagcount!=0)
                                     {
                                         $tagcount=$tagcount-1;
-                                        echo '<button style ="margin:10px;height:25px;width:40px;background-color:green;border:none;text-align:center;cursor:pointer;border-radius: 8px;"> <a href ="tags.php" style="color:white">'.$newtags[$tagcount].'</a></button>';
+                                        echo '<button style ="margin:10px;height:25px;width:40px;background-color:green;border:none;text-align:center;cursor:pointer;border-radius: 8px;"> <a href ="tags.php? var='.$newtags[$tagcount].'" style="color:white">'.$newtags[$tagcount].'</a></button>';
                                     }
                   }
-                 echo '</div>
-                                <hr>
-                                </div>';
-                    
-                                $ip=0;
+                            echo    '</div>';
+                  $ip=0;
                                 while( $ip<$anscount){
                                     $ip=$ip+1;
                                     echo' <ul class="pagination">
@@ -136,6 +114,6 @@ div.container {margin-top: 4.5em !important;}
             ?>
         </div>
 </body>
-    <?php
-    include_once 'footer.php';?>  
+<?php
+    include_once 'footer.php';?> 
 </html>
