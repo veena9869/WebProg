@@ -34,7 +34,7 @@
                          Ask Questions <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="SubmitQuest.php">Post a Question</a></li>
-                            <li><a href="Questions.php">Questions Posted By you</a></li>
+                            <li><a href="Questions.php">All Questions Posted</a></li>
                             <li><a href="wordcount.php">Wordle</a></li>
                             <li><a href="Profile.php">User Profile</a></li>
                             <li role="separator" class="divider"></li>
