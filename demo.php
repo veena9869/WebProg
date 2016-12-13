@@ -62,7 +62,7 @@ $resp = curl_exec($curl);
 curl_close($curl);
 
 $git = json_decode($resp,true);
-echo $resp;
+
 
     
 
@@ -74,14 +74,14 @@ $email = $git['email'];
     
     $usrname=ltrim($name,'$');
 
-    echo "name is" .$name;
-    echo "email is".$email;
-    echo "username is".$usrname;
+   // echo "name is" .$name;
+//    echo "email is".$email;
+  //  echo "username is".$usrname;
     
     $sql1='select * from users where user_name="'.$usrname.'"';
     $usr=$conn->query($sql1);
     
-    echo $sql1;
+  //  echo $sql1;
     //echo $usr;
     
        $rowadmin = mysqli_fetch_array($usr);
@@ -90,7 +90,7 @@ $email = $git['email'];
     
     if(count($rowadmin)== 0)
     {
-        echo "inside";
+       // echo "inside";
         $sql3 = "INSERT INTO users (user_name,user_pw,email)
 			VALUES ('$usrname','$usrname',  '$usrname')";
         $res=$conn->query($sql3);
