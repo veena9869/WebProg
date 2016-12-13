@@ -11,6 +11,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
     <script src="//cdn.ckeditor.com/4.6.0/full/ckeditor.js"></script>
     
 </head>
@@ -18,7 +19,7 @@
 <?php
     include_once 'nav.php';?>
 <style>
-div.container {margin-top: 7em !important;}
+div.container {margin-top: 6em !important;}
 </style>
     
 <body>
@@ -43,8 +44,8 @@ function freeze() {
         
         <?php }?>
             <br>
-            <br>
-        
+            <br> 
+            
             <?php
 				ini_set('display_errors', 1);
                 ini_set('display_startup_errors', 1);
@@ -54,7 +55,6 @@ function freeze() {
 				$bbcode = new BBCode;
 				$questionID = $_GET['var'];
 				$_SESSION['questionNum'] = $questionID;				
-				$conn = new mysqli($servername, $username, $password, $dbname);
 				if ($conn->connect_error ) {
 					die("Connection failed: " . $conn->connect_error);
 				}
@@ -74,19 +74,7 @@ function freeze() {
                 echo'
                         <div class="col-xs-12 col-sm-8" >                    
                             <div class = "content" style = "color:black">Question Description- '.html_entity_decode($bbcode->Parse($row['q_content'])) .'</div>
-                            <div class = "asker" style = "color:black">  Posted By- '. $row['q_asker'] .'<br>';
-    $tags= $row['tags'];
-                                    $newtags=explode("#",$tags);
-                                    $tagcount=count($newtags);
-                  
-                  if($tagcount!=1){
-                                    while ($tagcount!=0)
-                                    {
-                                        $tagcount=$tagcount-1;
-                                        echo '<button style ="margin:10px;height:25px;width:40px;background-color:green;border:none;text-align:center;cursor:pointer;border-radius: 8px;"> <a href ="tags.php" style="color:white">'.$newtags[$tagcount].'</a></button>';
-                                    }
-                  }
-    echo '</div>                    
+                            <div class = "asker" style = "color:black">  Posted By- '. $row['q_asker'] .'</div>                    
                         </div>';
                    if($_SESSION['username']!= null ){     
                        echo' 
@@ -94,13 +82,16 @@ function freeze() {
                             <form method="post" action="voteQuestion.php">
 							     <input type="submit" name="up" value="up">
 							     <input type="hidden" name="id" value="'.$questionID . '">
-                                 <input type="hidden" name="uid" value="'.$uid . '">
+                                 <input type="hidden" name="uid" value="'.$id . '">
+                                 <input type="hidden" name="asker" value="'.$row['q_asker'] . '">
+                                 
 				            </form>votes 
                             '.$row['q_value'].'
                             <form method="post" action="voteQuestion.php">
 							     <input type="submit" name="down" value="down">
 							     <input type="hidden" name="id" value="'.$questionID . '">
-                                 <input type="hidden" name="uid" value="'.$uid . '">
+                                 <input type="hidden" name="uid" value="'.$id . '">
+                                 <input type="hidden" name="asker" value="'.$row['q_asker'] . '">
 							 </form>
                              
                         </div>
@@ -144,15 +135,14 @@ function freeze() {
             $resultans = $conn->query($sqlanswers);
             $rowans = mysqli_fetch_array($resultans);
             $anscount=$rowans['anscount']/2;
-        echo"anscount=".$anscount;
+       
         $page=0;
             
             while( $i<$anscount)
             {
                 $i=$i+1;
-               echo' <ul class="pagination">
-    <li><a href="anspagin.php? var1='.$i.'&var='.$questionID.'">'.$i.'</a></li>    
-  </ul>';
+               echo'<ul class="pagination" style="margin-top:6em;">
+    <li><a href="anspagin.php? var1='.$i.'&var='.$questionID.'">'.$i.'</a></li></ul>';
                 
             }
 			$sql2 = "SELECT * FROM question JOIN answer ON question.q_id = answer.a_id
@@ -195,7 +185,7 @@ function freeze() {
             }
                 
                echo' <div class="col-xs-12 col-sm-8" style="text-align:center">
-							              <div style="color:black">'. html_entity_decode($bbcode->Parse($row['a_content'] )).'</div>
+							              <div style="color:black">'. html_entity_decode($row['a_content']) .'</div>
                                           <div style="color:black">-'. $row['a_asker'] .'</div>
 			                  </div>
                               <div class = "col-xs-12 col-sm-2">';
@@ -219,8 +209,7 @@ function freeze() {
             echo'</div>
             </div>
             </div>
-            </div>';
-            
+            </div>';  
         }			
 		?>
     </div>
