@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Dec 13, 2016 at 06:46 PM
+-- Generation Time: Dec 13, 2016 at 07:02 PM
 -- Server version: 5.5.49-log
 -- PHP Version: 7.0.9
 
@@ -122,22 +122,23 @@ CREATE TABLE IF NOT EXISTS `question` (
   `q_value` int(11) NOT NULL,
   `q_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `freeze` int(11) NOT NULL,
-  `asker_score` int(11) NOT NULL
+  `asker_score` int(11) NOT NULL,
+  `tags` varchar(1000) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`q_id`, `q_asker`, `q_title`, `q_content`, `q_value`, `q_timestamp`, `freeze`, `asker_score`) VALUES
-(1, 'admin', 'Why does Arya want to go to Braavos?\r\n', 'At this episode 4 why does Arya want to go to Braavos?\r\n\r\n', 2, '0000-00-00 00:00:00', 0, 1),
-(2, 'admin', 'Who will kill Circy', 'How does Circy meet her death?', 2, '0000-00-00 00:00:00', 0, 1),
-(3, 'jbrunelle', 'Where is Gendry', 'Where is he gone', 1, '0000-00-00 00:00:00', 0, 1),
-(4, 'jbrunelle', ' Why did Melisandre look so fascinated by Jon Snow?', 'Why was she amazed by looking at him', 2, '0000-00-00 00:00:00', 0, 1),
-(5, 'pvenkman', 'Is the Hound dead?', 'Was he left by Arya to die?', 0, '0000-00-00 00:00:00', 0, 0),
-(6, 'admin', '           who is this guy???? hjvhb jhbjj jknu', '<p><img alt="Image result for john snow got" src="http://screenrant.com/wp-content/uploads/Game-of-Thrones-Finale-Jon-Snow-Dead-Killed.jpg" /></p>\r\n', 0, '2016-11-22 14:35:17', 0, 1),
-(8, 'admin', '           test', '&lt;p&gt;test&lt;/p&gt;\r\n', 1, '2016-11-22 16:43:27', 0, 1),
-(9, 'jbrunelle', '           test for score', '&lt;p&gt;test for score&lt;/p&gt;\r\n', 1, '2016-12-10 02:17:12', 0, 1);
+INSERT INTO `question` (`q_id`, `q_asker`, `q_title`, `q_content`, `q_value`, `q_timestamp`, `freeze`, `asker_score`, `tags`) VALUES
+(1, 'admin', 'Why does Arya want to go to Braavos?\r\n', 'At this episode 4 why does Arya want to go to Braavos?\r\n\r\n', 2, '0000-00-00 00:00:00', 0, 1, ''),
+(2, 'admin', 'Who will kill Circy', 'How does Circy meet her death?', 2, '0000-00-00 00:00:00', 0, 1, ''),
+(3, 'jbrunelle', 'Where is Gendry', 'Where is he gone', 1, '0000-00-00 00:00:00', 0, 1, ''),
+(4, 'jbrunelle', ' Why did Melisandre look so fascinated by Jon Snow?', 'Why was she amazed by looking at him', 2, '0000-00-00 00:00:00', 0, 1, ''),
+(5, 'pvenkman', 'Is the Hound dead?', 'Was he left by Arya to die?', 0, '0000-00-00 00:00:00', 0, 0, ''),
+(6, 'admin', '           who is this guy???? hjvhb jhbjj jknu', '<p><img alt="Image result for john snow got" src="http://screenrant.com/wp-content/uploads/Game-of-Thrones-Finale-Jon-Snow-Dead-Killed.jpg" /></p>\r\n', 0, '2016-11-22 14:35:17', 0, 1, ''),
+(8, 'admin', '           test', '&lt;p&gt;test&lt;/p&gt;\r\n', 1, '2016-11-22 16:43:27', 0, 1, ''),
+(9, 'jbrunelle', '           test for score', '&lt;p&gt;test for score&lt;/p&gt;\r\n', 1, '2016-12-10 02:17:12', 0, 1, '');
 
 -- --------------------------------------------------------
 
