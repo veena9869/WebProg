@@ -97,6 +97,10 @@ $email = $git['email'];
         
         $sql4="select user_name,user_id from users where user_name='".$usrname."'";
         $res1=$conn->query($sql4);
+        
+                 echo '<script type="text/javascript">
+   window.location.href = "/";
+   </script>';
     
          
  }   
