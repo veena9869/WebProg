@@ -78,10 +78,13 @@ if($_POST["register-submit"])
 		  }
 		else
 		  {
-			echo '<p>Registration failed!</p>
-					<form action=index.php>
-						<input type="submit" value="Home">
-					</form>';
+			echo echo '
+            <script>
+                alert("Registration failed!");
+                window.location.href="index.php";
+            </script>
+            
+            ';
 		  }
 	}
 	else
