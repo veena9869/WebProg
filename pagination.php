@@ -104,10 +104,21 @@ $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
                                 <div class="media-body">
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . 
                       html_entity_decode($bbcode->Parse($row['q_title'])) .
-                                    '</a> <br>' . $row['q_asker'] . ' <br>User Score: '.$row['asker_score'].'
-                                </div>
+                                    '</a> <br>' . $row['q_asker'] . ' <br>User Score: '.$row['asker_score'].'';$tags= $row['tags'];
+                                    $newtags=explode("#",$tags);
+                                    $tagcount=count($newtags);
+                  
+                  if($tagcount!=1){
+                                    while ($tagcount!=0)
+                                    {
+                                        $tagcount=$tagcount-1;
+                                        echo '<button style ="margin:10px;height:25px;width:40px;background-color:green;border:none;text-align:center;cursor:pointer;border-radius: 8px;"> <a href ="tags.php" style="color:white">'.$newtags[$tagcount].'</a></button>';
+                                    }
+                  }
+                 echo '</div>
                                 <hr>
                                 </div>';
+                                
                   $ip=0;
                                 while( $ip<$anscount){
                                     $ip=$ip+1;
