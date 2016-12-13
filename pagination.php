@@ -58,6 +58,7 @@ div.container {margin-top: 4.5em !important;}
             $resultquestions = $conn->query($sqlquestions);
             $rowquestions = mysqli_fetch_array($resultquestions);
             $questioncount=$rowquestions['questioncount']/2;
+            $page=0;
             
             
             while( $i<$questioncount)
