@@ -23,7 +23,7 @@ if ($row_count == 0) {
 }else{
 
   foreach ($result as $key => $value) {
-   $str = $str.'<a href="Profile.php?var='.$value['user_name'].'">
+   $str = $str.'<a href="Profile2.php?var='.$value['user_name'].'">
        <h3>'.$value['user_name'].'</h3></a>';
   }
 
