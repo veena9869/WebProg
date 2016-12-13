@@ -1,5 +1,5 @@
 <?php
-$page=($_GET['var']-1)*2;
+
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
 $bbcode = new BBCode;
@@ -58,7 +58,7 @@ div.container {margin-top: 4.5em !important;}
             $resultquestions = $conn->query($sqlquestions);
             $rowquestions = mysqli_fetch_array($resultquestions);
             $questioncount=$rowquestions['questioncount']/2;
-            $page=0;
+            
             
             
             while( $i<$questioncount)
@@ -69,10 +69,17 @@ div.container {margin-top: 4.5em !important;}
   </ul>';
                 
             }
+            $page=($_GET['var']-1)*2;
 $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
             $result = $conn->query($sql);
               while($row = mysqli_fetch_array($result))
-                {  
+                {   $sql1= "select * from users where user_name='".$row['q_asker']."'";
+                  $result1= $conn->query($sql1);
+                  $user = mysqli_fetch_array($result1);
+                  $sql2="select * from avatar where avatar_uid=".$user['user_id'];
+                  $result2= $conn->query($sql2);
+                  $avatar = mysqli_fetch_array($result2);
+                  $path = "http://vtalapaneni.cs518.cs.odu.edu/upload/".$avatar['filename'];
                   $sqlans="Select count(*) as anscount from answer where a_id=".$row['q_id'];
                   $resultans = $conn->query($sqlans);
             $rowans = mysqli_fetch_array($resultans);
@@ -91,9 +98,15 @@ $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
                         <div class="Question" >
                             <div class="votes" >
                                 <div class="views" >
+                                <div class="media-left">
+                                     <img src="'.$path.'" class="media-object" style="width:60px">
+                                      </div>
+                                <div class="media-body">
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . 
                       html_entity_decode($bbcode->Parse($row['q_title'])) .
                                     '</a> <br>' . $row['q_asker'] . ' <br>User Score: '.$row['asker_score'].'
+                                </div>
+                                <hr>
                                 </div>';
                   $ip=0;
                                 while( $ip<$anscount){

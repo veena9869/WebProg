@@ -4,7 +4,7 @@ include_once  'Db_Config.php';
 
 $user = $_SESSION['userID'];
 
-$target_dir = "C:/MAMP/htdocs/profilepics/";
+$target_dir = "http://vtalapaneni.cs518.cs.odu.edu/upload/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -55,9 +55,18 @@ if ($uploadOk == 0) {
                 $rowuser=$resultuser->fetch_assoc();
         echo $rowuser['user_id'];
         $userid =$rowuser['user_id'];
-        $sql = "INSERT INTO avatar (avatarid,avatar_uid,filename,filetype) VALUES ('$avatarid','$userid','$file',0)";
-        $insert = mysqli_query($conn, $sql);
-        echo "sql:". $sql;
+        $sql1="select * from avatar where avatar_uid=".$userid;
+        $sql2 = "INSERT INTO avatar (avatarid,avatar_uid,filename,filetype) VALUES ('$avatarid','$userid','$file',0)";
+        $sql3 = "update avatar set filename='$file' where avatar_uid='$userid'";
+        //$check = mysqli_query($conn, $sql1);
+        $check = $conn->query($sql1);
+       
+        if($check-> num_rows==0)
+                $insert = $conn->query($sql2);
+        else
+            $update = $conn->query($sql3);
+        $url = "Profile.php?var=".$_SESSION['username'];
+        header("Location:".$url);
         } else {
         
         echo "error:Sorry, there was an error uploading your file.";

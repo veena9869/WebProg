@@ -1,7 +1,8 @@
 <nav class="navbar navbar-light bg-faded navbar-fixed-top topnav" role="navigation">
   <ul class="nav navbar-nav" id="menu" static>
         
-    <?php  
+    <?php 
+      session_start();
       if(!$_SESSION['logged_in']){
       echo'
       <li class="nav-item">
@@ -36,7 +37,27 @@
                             <li><a href="SubmitQuest.php">Post a Question</a></li>
                             <li><a href="Questions.php">All Questions Posted</a></li>
                             <li><a href="wordcount.php">Wordle</a></li>
-                            <li><a href="Profile.php">User Profile</a></li>
+<!--                            <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">'-->
+                         <?php echo'   <li><a href="Profile.php?var='.$_SESSION['username'].'">User Profile</a></li>';
+                            ?>
+                            <?php 
+        include_once 'Db_Config.php';
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $sqladmin = 'select admin from users where user_name="'.$_SESSION['username'].'"';
+        $resultadmin = $conn->query($sqladmin);
+        $rowadmin = mysqli_fetch_array($resultadmin);
+        
+        $sqlusrname = 'select user_score from users where user_name="'.$_SESSION['username'].'"';
+            $resultusrname = $conn->query($sqlusrname);
+            //echo $resultusrname;
+        
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+              }
+        if($rowadmin['admin']==1){?>
+                            <li><a href="Admin.php">Admin</a></li>
+        
+        <?php }?>
                             <li role="separator" class="divider"></li>
        <?php
         if($_SESSION['logged_in'])
@@ -56,24 +77,7 @@
             </ul>
       </li>
                             
-        <?php 
-        include_once 'Db_Config.php';
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        $sqladmin = 'select admin from users where user_name="'.$_SESSION['username'].'"';
-        $resultadmin = $conn->query($sqladmin);
-        $rowadmin = mysqli_fetch_array($resultadmin);
         
-        $sqlusrname = 'select user_score from users where user_name="'.$_SESSION['username'].'"';
-            $resultusrname = $conn->query($sqlusrname);
-            //echo $resultusrname;
-        
-        if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-              }
-        if($rowadmin['admin']==1){?>
-        <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
-        
-        <?php }?>
       
  </ul>
 </nav>

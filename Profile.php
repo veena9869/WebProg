@@ -21,23 +21,7 @@ div.container {margin-top: 6em !important;}
 </style> 
     
     <body>
-        <div class="container">
-    
-        <?php 
-        include_once 'Db_Config.php';
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        $sqladmin = 'select admin from users where user_name="'.$_SESSION['username'].'"';
-        $resultadmin = $conn->query($sqladmin);
-        $rowadmin = mysqli_fetch_array($resultadmin);
         
-        if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-              }
-        if($rowadmin['admin']==1){?>
-        <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
-        
-        <?php }?>
-      </div>
 
         <div class="col-md-6">
     <?php
@@ -45,10 +29,10 @@ div.container {margin-top: 6em !important;}
             ini_set('display_startup_errors',1);
             error_reporting(E_ALL);
             
-            chmod("C:/MAMP/htdocs/profilepics/", 777);
-            session_start();
+            //chmod("C:/MAMP/htdocs/profilepics/", 777);
+            //session_start();
             
-            $requser = $_GET['var'];
+            $requser = $_SESSION['username'];
 
         if ($conn->connect_error) 
 	       {
@@ -58,7 +42,7 @@ div.container {margin-top: 6em !important;}
         if($_SESSION['logged_in'])
         {
             
-            echo 'Welcome ' . $_SESSION['username'] .', <a href="logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
+            echo 'Welcome ' . $_SESSION['username'] .', <br>';
             
              echo "You are now viewing " .$requser."'s profile";
             
@@ -69,14 +53,14 @@ div.container {margin-top: 6em !important;}
         
         $userid =$rowuser['user_id'];
             $sqlavatar="select * from avatar where avatar_uid='$userid'";
-				echo $_SESSION['userID'];
+				//echo $_SESSION['userID'];
 					$resultavatar = mysqli_query($conn, $sqlavatar);
 					$rowavatar = mysqli_fetch_assoc($resultavatar);
-            echo $rowavatar['filename'];
+           // echo $rowavatar['filename'];
 					 if($rowavatar['filetype'] == '0') {
 						$imgname = $rowavatar['filename'];
-                         $path="C:/MAMP/htdocs/profilepics/".$imgname;
-						 echo '<img src="'.$path.'"style="width:304px;height:228px;">';
+                         $path="http://vtalapaneni.cs518.cs.odu.edu/upload/".$imgname;
+						 echo '<div><img src="'.$path.'" height="230px" width="300px"></div>';
 						
 					}
 					
