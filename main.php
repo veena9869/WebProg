@@ -5,19 +5,20 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="script.js"></script>
-    
-    
 </head>
+    
+<?php
+    include_once 'nav.php';?>
+<style>
+div.container {margin-top: 4.5em !important;}
+    
+</style>
 <body>
 <div class="main">
 <h1>Ajax Image Upload</h1><br/>
 <hr>
 <form id="uploadimage" action="" method="post" enctype="multipart/form-data">
 <div id="image_preview"><img id="previewing" src="noimage.png" /></div>
-    
-    
-    
-    
     
 <hr id="line">
 <div id="selectImage">
@@ -59,8 +60,6 @@
 
         <div class="col-md-6">
     <?php
-            
-            
             ini_set('display_errors',1);
             ini_set('display_startup_errors',1);
             error_reporting(E_ALL);
@@ -69,7 +68,6 @@
             session_start();
             
             $requser = $_GET['var'];
-
         if ($conn->connect_error) 
 	       {
 		      die("Connection failed: " . $conn->connect_error);
@@ -84,20 +82,34 @@
             
              $sqluser="select user_id from users where user_name='".$requser."'";
         $resultuser = $conn->query($sqluser);        
-                
+                //$rowuser=$resultuser->fetch_assoc();
             $rowuser=mysqli_fetch_assoc($resultuser);
         
         $userid =$rowuser['user_id'];
-           ;
+            //$sqlavatar="select * from avatar where avatar_uid='$userid'";
 				echo $_SESSION['userID'];
+					//$resultavatar = mysqli_query($conn, $sqlavatar);
+					//$rowavatar = mysqli_fetch_assoc($resultavatar);
+            /*echo $rowavatar['filename'];
+					 if($rowavatar['filetype'] == '0') {
+						$imgname = $rowavatar['filename'];
+                         $path="C:/MAMP/htdocs/profilepics/".$imgname;
+						 echo '<img src="'.$path.'"style="width:304px;height:228px;">';
+						
+					}*/
 					
+            /*echo '<form enctype="multipart/form-data" action="fileupload.php" method="post">
+            <input type="hidden" name="MAX_FILE_SIZE" value="50000">
+            <input type = "hidden" name = "uid" value ="'.$_SESSION['userID']. '">
+            File: <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+          </form>';*/
         }       
             
             
             $sql = 'SELECT * FROM question WHERE q_asker = "' . $requser . '"';
             
               $result = $conn->query($sql);
-
               while($row = mysqli_fetch_array($result))
                 {  
                   echo'<div class="container" >
@@ -116,18 +128,8 @@
            
             ?>
         </div>
-</body>
+</body>  
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
+    <?php
+    include_once 'footer.php';?> 
 </html>

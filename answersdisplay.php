@@ -12,38 +12,22 @@
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="//cdn.ckeditor.com/4.6.0/full/ckeditor.js"></script>
+    
 </head>
 
+<?php
+    include_once 'nav.php';?>
+<style>
+div.container {margin-top: 4.5em !important;}
+</style>
+    
 <body>
 
 <script>
 function freeze() {
     alert("Answer cannot be submitted!");
 }
-</script>
-    <div class="jumbotron">
-        <div class="container">
-        <h1>Thrones Realm</h1>
-        <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
-
-        
-            <a href="loginform.php">
-                <button type="button" class="btn btn-success">Login or Register</button>
-            </a>
-            <a href="index.php">
-                <button type="button" class="btn btn-danger">Home</button>
-            </a>
-            <a href="Questions.php">
-                <button type="button" class="btn btn-primary">Questions</button>
-            </a>
-            <a href="SubmitQuest.php">
-                <button type="button" class="btn btn-success">Post a Question</button>
-            </a>
-            <a href="Profile.php">
-                <button type="button" class="btn btn-primary">Profile</button>
-            </a>
-            
-            <?php 
+        <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
         $sqladmin = 'select * from users where user_name="'.$_SESSION['username'].'"';
@@ -60,10 +44,7 @@ function freeze() {
         <?php }?>
             <br>
             <br>
-        </div>
-    </div>
-    
-
+        
             <?php
 				ini_set('display_errors', 1);
                 ini_set('display_startup_errors', 1);
@@ -159,9 +140,8 @@ function freeze() {
             while( $i<$anscount)
             {
                 $i=$i+1;
-               echo' <ul class="pagination">
-    <li><a href="anspagin.php? var1='.$i.'&var='.$questionID.'">'.$i.'</a></li>    
-  </ul>';
+               echo'<ul class="pagination" style="margin-top:6em;">
+    <li><a href="anspagin.php? var1='.$i.'&var='.$questionID.'">'.$i.'</a></li></ul>';
                 
             }
 			$sql2 = "SELECT * FROM question JOIN answer ON question.q_id = answer.a_id
@@ -228,14 +208,12 @@ function freeze() {
             echo'</div>
             </div>
             </div>
-            </div>';
-            
-        
-            
+            </div>';  
         }			
 		?>
     </div>
     
 </body>
-
+<?php
+    include_once 'footer.php';?>  
 </html>

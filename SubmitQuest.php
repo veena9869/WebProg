@@ -13,20 +13,13 @@
   <script src="//cdn.ckeditor.com/4.6.0/standard/ckeditor.js"></script>
 </head>
     
-<body>
+<?php
+include_once 'nav.php';?>
+<style>
+div.container {margin-top: 4.5em !important;}
+</style>
     
-    <div class="container">
-  <div class="jumbotron">
-    <h1>Thrones Realm</h1>
-    <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
-  
-    <div class="container">
-      <a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>
-      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
-      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
-        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
-        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
-        <a href="help.php"><button type="button" class="btn btn-primary">Help</button></a>
+    <body>
         <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -40,35 +33,24 @@
         if($rowadmin['admin']==1){?>
         <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a>
         
-        <?php }?>
+        <?php }?>        
         
-        
-        <button type="button" class="btn btn-warning">Votes</button> <br><br> 
-      </div>
-        </div>
-    </div>
-    
     <?php
     
     session_start();
     error_reporting(0);
-
-	
 	if ($conn->connect_error)
     {
 		die("Connection failed: " . $conn->connect_error);
 	}
     if($_SESSION['logged_in'] == 0)
-{
-    
-    echo '
-            <div class="row">
-            <p>Please <a href="login.php">Login</a> to ask a question</p>
-          </div>';
-}
+    {
+    echo'
+    <script>alert ("please login in");
+    window.location.href="loginform.php"</script>';
+    }
    else
    {
-    
            echo '
            <div class="container">
            <div class="quest-area">
@@ -83,12 +65,10 @@
            </div>
            ';
        }
-   
-    
-
     ?>
     <script>CKEDITOR.replace( 'input');</script>
     </body>
-
+<?php
+    include_once 'footer.php';?>  
 
 </html>

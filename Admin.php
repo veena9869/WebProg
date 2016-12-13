@@ -9,7 +9,7 @@ error_reporting(0);
 <!DOCTYPE html>
 <html>
 <html lang="en">
-<head>
+ <head>
   <title>Milestone 1</title>
   <meta charset="utf-8">
   <meta http-eqiuv="XUA-Compatible" content="IE-edge">
@@ -21,41 +21,25 @@ error_reporting(0);
   <script src="js/bootstrap.min.js"></script>
 </head>
         
+<?php
+    include_once 'nav.php';?>
+<style>
+div.container {margin-top: 4.5em !important;}
+</style>
+    
 <body>
-<div class="container">
-  <div class="jumbotron">
-    <h1>Thrones Realm</h1>
-      
-  
-    <div class="container">
-        <!--<a href="" onclick="popupCenter('loginform.php')">-->
-      <a href='loginform.php'><button type="button" class="btn btn-success">Login or Register</button></a>
-      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
-      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
-        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
-        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
-        <a href="help.php"><button type="button" class="btn btn-primary">Help</button></a>
-        <a href="Admin.php"><button type="button" class="btn btn-primary">Admin</button></a><br><br>
-        
         
         <?php
         if($_SESSION['logged_in'])
         {
-            echo 'Welcome ' . $_SESSION['username'] .', <a href="Logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
+            echo 'Welcome ' . $_SESSION['username'] .', <a href="logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
         }
         else
         {}
         ?>
         
-      </div>
-   </div>
-</div>
-
         <div class="col-md-6">
             <?php
-            
-            
-            
 
               include_once 'Db_Config.php';
               
@@ -102,4 +86,7 @@ error_reporting(0);
             ?>
         </div>
 </body>
+    
+    <?php
+    include_once 'footer.php';?>  
 </html>

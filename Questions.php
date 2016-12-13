@@ -19,27 +19,19 @@ $bbcode = new BBCode;
   <meta name="viewport" content="width=device-width,intitail-scale=1">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-  <link href="main.css" rel="stylesheet">
   <link href="login.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 </head>
   
+<?php
+    include_once 'nav.php';?>
+<style>
+div.container {margin-top: 4.5em !important;}
+</style> 
+    
+    
 <body>
-<div class="container">
-  <div class="jumbotron">
-    <h1>Thrones Realm</h1>
-    <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
-  
-    <div class="container"><?php
-         if(!$_SESSION['logged_in']){
-      echo'<a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>';
-        }?>
-      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
-      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
-        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
-        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
-        <a href="help.php"><button type="button" class="btn btn-primary">Help</button></a>
         <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -56,22 +48,6 @@ $bbcode = new BBCode;
             
         <?php }?>
         
-        <?php
-        if($_SESSION['logged_in'])
-        {
-            echo 'Welcome ' . $_SESSION['username'] .', <a href="Logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
-        
-        echo '<div class="pull-right">
-        
-      </div>';
-        }
-        ?>
-        
-      </div>
-      </div>
-   </div>
-
-
         <div class="col-md-6">
             
             <?php              
@@ -80,8 +56,7 @@ $bbcode = new BBCode;
               
             $resultquestions = $conn->query($sqlquestions);
             $rowquestions = mysqli_fetch_array($resultquestions);
-            
-            $questioncount=$rowquestions['questioncount']/2;
+            $questioncount=$rowquestions['questioncount']/10;
             $page=0;
             while( $i<$questioncount)
             {
@@ -114,11 +89,18 @@ $bbcode = new BBCode;
                         <div class="Question" >
                             <div class="votes" >
                                 <div class="views" >
+                                
+                                <div class="media-left">
+                                    <img src="profilepics/2.jpg" class="media-object" style="width:60px">
+                                </div>
+                                <div class="media-body">
                                     <a href="answersdisplay.php? var='  . $row['q_id'] . '" style ="color:green">' . html_entity_decode($bbcode->Parse($row['q_title'] )).
                                     '</a> <br>' . $row['q_asker'] . ' <br> User Score: '.$row['asker_score'].'
-                                    
+                                </div>
+                                <hr>
                                 </div>';
-                  $ip=0;
+                    
+                                $ip=0;
                                 while( $ip<$anscount){
                                     $ip=$ip+1;
                                     echo' <ul class="pagination">
@@ -134,4 +116,6 @@ $bbcode = new BBCode;
             ?>
         </div>
 </body>
+    <?php
+    include_once 'footer.php';?>  
 </html>

@@ -26,21 +26,13 @@ error_reporting(0);
   <script src="js/bootstrap.min.js"></script>
 </head>
   
+<?php
+    include_once 'nav.php';?>
+<style>
+div.container {margin-top: 4.5em !important;}
+</style>    
+
 <body>
-<div class="container">
-  <div class="jumbotron">
-    <h1>Thrones Realm</h1>
-    <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
-  
-    <div class="container"><?php
-         if(!$_SESSION['logged_in']){
-      echo'<a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>';
-        }?>
-      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
-      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
-        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
-        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
-        <a href="help.php"><button type="button" class="btn btn-primary">Help</button></a>
         <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -57,22 +49,6 @@ error_reporting(0);
         <?php }?>
         <button type="button" class="btn btn-warning">Votes</button> <br><br> 
         
-        <?php
-        if($_SESSION['logged_in'])
-        {
-            echo 'Welcome ' . $_SESSION['username'] .', <a href="Logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
-        
-        echo '<div class="pull-right">
-        
-      </div>';
-        }
-        ?>
-        
-      </div>
-      </div>
-   </div>
-
-
         <div class="col-md-6">
             
             <?php          
@@ -87,12 +63,11 @@ error_reporting(0);
             while( $i<$questioncount)
             {
                 $i=$i+1;
-               echo' <ul class="pagination">
+               echo' <ul class="pagination" style="margin-top:6em;">
     <li><a href="pagination.php? var='.$i.'">'.$i.'</a></li>    
   </ul>';
                 
             }
-            //echo "page=".$page;
 $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
             $result = $conn->query($sql);
               while($row = mysqli_fetch_array($result))
@@ -136,4 +111,6 @@ $sql = "SELECT *  FROM question ORDER BY q_value DESC LIMIT ".$page.",2";
             ?>
         </div>
 </body>
+    <?php
+    include_once 'footer.php';?>  
 </html>

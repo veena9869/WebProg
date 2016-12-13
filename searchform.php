@@ -61,8 +61,6 @@
       </div>
   
 		<?php
-        
-        
         ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -80,19 +78,14 @@ error_reporting(0);
 	   $result=$conn->query($sql);
       
 	    if($result!==NULL) 
-	    {    
-              
+	    {     
 	      while($row = mysqli_fetch_array($result))   
-	       {       echo'
-                    
-                        <div class="Profiles" >
+	       {       echo'  <div class="Profiles" >
                             <div class="List" >
                                 <div class="lists" >
                                     <a href="Profile2.php? var='  . $row['user_name'] . '" style ="color:green">' . $row['user_name'] .
                                     '</a> 
-                                </div>
-                           
-                       
+                                </div>                       
                         </div>
                     </div> '; 
           }
@@ -103,8 +96,6 @@ error_reporting(0);
     { $sql = "SELECT * FROM users where `user_name` like '%".$_POST['name']."%'";
 	    
 	   $result=$conn->query(sql);
-	   
-	    
 	    while($row=mysqli_fetch_array($result))
 	    {
 		$nam = $row['user_name'];

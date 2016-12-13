@@ -23,22 +23,14 @@ error_reporting(0);
   <script src="js/bootstrap.min.js"></script>
 </head>
   
+    <?php
+    include_once 'nav.php';?>
+<style>
+div.container {margin-top: 4.5em !important;}
+</style>
+    
 <body>
     
-    <div class="container">
-  <div class="jumbotron">
-    <h1>Thrones Realm</h1>
-    <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
-  
-    <div class="container"><?php
-         if(!$_SESSION['logged_in']){
-      echo'<a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>';
-        }?>
-      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
-      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
-        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
-        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
-        <a href="help.php"><button type="button" class="btn btn-primary">Help</button></a>
         <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -54,9 +46,6 @@ error_reporting(0);
         
         <?php }?>
         
-        
-        
-        
         <?php
         if($_SESSION['logged_in'])
         {
@@ -68,10 +57,6 @@ error_reporting(0);
          echo '<a href="Profile.php?var=' . $_SESSION['username'] . '"></a>';            
         }        
         ?>
-        
-      </div>
-      </div>
-   </div>
     
     <div class="container">
             <div class="row row-header">
@@ -156,16 +141,7 @@ error_reporting(0);
             </div>
         </div>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     </body>
+    <?php
+    include_once 'footer.php';?>  
     </html>

@@ -16,11 +16,6 @@ $sql="SELECT * from users where user_name like '%".$str."%' GROUP BY user_name";
                 $res=mysqli_fetch_array($result);
                 $row_count=mysqli_num_rows($result);
 
-
-
-    
-
-
 $str = '';
 
 if ($row_count == 0) {

@@ -14,19 +14,13 @@
   <script src="//cdn.ckeditor.com/4.6.0/standard/ckeditor.js"></script>
 </head>
     
-<body>
+    <?php
+    include_once 'nav.php';?>
+<style>
+div.container {margin-top: 4.5em !important;}
+</style>
     
-    <div class="container">
-  <div class="jumbotron">
-    <h1>Thrones Realm</h1>
-    <p> Welcome to world of Game of Thrones. Post your Questions here!</p>
-  
-    <div class="container">
-      <a href="loginform.php"><button type="button" class="btn btn-success">Login or Register</button></a>
-      <a href="index.php"><button type="button" class="btn btn-danger">Home</button></a>
-      <a href="Questions.php"><button type="button" class="btn btn-primary">Questions</button></a>
-        <a href="SubmitQuest.php"><button type="button" class="btn btn-success">Post a Question</button></a>
-        <a href="Profile.php"><button type="button" class="btn btn-primary">Profile</button></a>
+<body>
         <?php 
         include_once 'Db_Config.php';
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -43,10 +37,7 @@
         <?php }?>
         
         <button type="button" class="btn btn-warning">Votes</button> <br><br> 
-      </div>
-        </div>
-    </div>
-    
+         
     <?php
     
     session_start();
@@ -79,6 +70,4 @@
     ?>
     <script>CKEDITOR.replace( 'input');</script>
         </body>
-
-
 </html>
