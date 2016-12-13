@@ -86,9 +86,11 @@ $email = $git['email'];
     
        $rowadmin = mysqli_fetch_array($usr);
     
-    if($rowadmin->num_rows==0)
+    
+    
+    if($rowadmin -> num_rows == 0)
     {
-        
+        echo "inside";
         $sql3 = "INSERT INTO users (user_name,user_pw,email)
 			VALUES ('$usrname','$usrname',  '$usrname')";
         $res=$conn->query($sql3);
